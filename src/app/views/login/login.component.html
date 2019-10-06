@@ -1,0 +1,88 @@
+<div id="login">
+
+  <div class="box-container">
+
+      <div class="img-box">
+          <img src="../../assets/images/logo-admin-text-white.png" class="logo hidden-sm-down">
+          <img src="../../assets/images/logo-w.png" class="hidden-sm-up w">
+          <img src="../../assets/images/logo-admin-text.png" class="hidden-sm-up h">
+      </div>
+
+      <div class="container box">
+          <form>
+
+              <div class="icon-input mg-b-10">
+                  <span>
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                  </span>
+                  <input type="email" #username required class="form-control" name="Email" placeholder="E-mail">
+              </div>
+
+              <div class="icon-input mg-b-10">
+                  <span>
+                      <i class="fa fa-lock" aria-hidden="true"></i>
+                  </span>
+                  <input type="password" #password required class="form-control" name="Senha" placeholder="Senha">
+              </div>
+              <div class="">
+                  <button class="btn btn-wcapp btn-full" (click)="login(username.value, password.value)">Entrar</button>
+                  <div class="forgot-password">
+                      <a [routerLink]="['/password/forgot']" >Esqueceu sua senha?</a>
+                  </div>
+              </div>
+          </form>
+      </div>
+
+      <div class="text-center copyright"> <strong>Sistema Treinamento</strong> <br> 2019
+      <i class="fa fa-copyright" aria-hidden="true"></i> Copyright Sistema Treinamento </div>    
+      
+  </div>
+
+</div>
+
+
+<!-- <section class="rommanel-login">
+    <h1 class="rommanel-login-logo"></h1>
+
+    <div class="rommanel-login-block">
+
+            <div class="sr-only">
+                <a href="">tocreatenewaccount</a>
+            </div>
+
+        <form action="" method="post" id="login">
+            <input id="anchor" type="hidden" name="anchor" value="">
+            <script>document.getElementById('anchor').value = location.hash;</script>
+            <div class="login-form-group">
+                <label for="username">
+                    e-mail
+                </label>
+                <input type="text" name="username" id="username" class="form-control" value="{{username}}" placeholder="meuemail@email.com">
+            </div>
+            <div class="login-form-group">
+                <label for="password">password</label>
+                <input type="password" name="password" id="password" value="" class="form-control" placeholder="●●●●●●">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                        <div class="rommanel-login-checkbox">
+                            <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked" />
+                            <label for="rememberusername">
+                                Lembrar-me
+                            </label>
+                        </div>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="" class="rommanel-login-esqueci-senha">Esqueci minha senha</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login" id="loginbtn">
+                Entrar
+            </button>
+        </form>
+
+    </div>
+
+</section> -->

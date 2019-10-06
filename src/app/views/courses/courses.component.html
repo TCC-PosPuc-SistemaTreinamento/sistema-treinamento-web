@@ -1,0 +1,26 @@
+<div class="content-card">
+    
+  <div class="col centered-title" *ngIf="loading">
+      <h1>Cursos</h1>
+      <div class="row justify-content-center">
+          <div class="loader"></div>
+      </div>
+  </div>
+
+  <div class="container-fluid" *ngIf="!loading">
+      <div class="row">
+          <div class="col centered-title">
+              <h1>Cursos</h1>
+          </div>
+      </div>
+      <hr>
+
+      <ul>
+          <li>Curso 1</li>
+          <li>Curso 2</li>
+          <li>Curso 3</li>
+      </ul>       
+
+
+  </div>
+</div>

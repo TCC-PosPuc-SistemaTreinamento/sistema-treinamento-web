@@ -9,23 +9,23 @@
       </div>
 
       <div class="container box">
-          <form>
+          <form (submit)="authenticate()">
 
               <div class="icon-input mg-b-10">
                   <span>
                       <i class="fa fa-user" aria-hidden="true"></i>
                   </span>
-                  <input type="email" #username required class="form-control" name="Email" placeholder="E-mail">
+                  <input type="email" [(ngModel)]="username" required class="form-control" name="Email" placeholder="E-mail">
               </div>
 
               <div class="icon-input mg-b-10">
                   <span>
                       <i class="fa fa-lock" aria-hidden="true"></i>
                   </span>
-                  <input type="password" #password required class="form-control" name="Senha" placeholder="Senha">
+                  <input type="password" [(ngModel)]="password" required class="form-control" name="Senha" placeholder="Senha">
               </div>
               <div class="">
-                  <button class="btn btn-wcapp btn-full" (click)="login(username.value, password.value)">Entrar</button>
+                  <button class="btn btn-wcapp btn-full" type="submit">Entrar</button>
                   <div class="forgot-password">
                       <a [routerLink]="['/password/forgot']" >Esqueceu sua senha?</a>
                   </div>

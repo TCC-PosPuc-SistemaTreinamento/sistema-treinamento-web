@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
                 private securityService: SecurityService){}
 
     canActivate() {
-        if(this.securityService.hasToken()){
+        if(this.securityService.isLoggedIn()){
             console.log('esta logado')
             return true;
         } else {

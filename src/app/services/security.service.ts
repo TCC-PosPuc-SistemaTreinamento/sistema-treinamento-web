@@ -9,7 +9,7 @@ export class SecurityService {
 
   constructor(private localStorage: LocalStorage) { }
 
-  hasToken() {
+  isLoggedIn() {
     return (this.localStorage.retrieve('token') !== null && this.localStorage.retrieve('token') !== 'undefined');
   }
 
@@ -25,8 +25,12 @@ export class SecurityService {
     return this.localStorage.retrieve('user');
   }
 
-  setUset(user: string) {
+  setUser(user: any) {
     this.localStorage.persist('user', user);
+  }
+
+  clear() {
+    this.localStorage.clear();
   }
 
 }

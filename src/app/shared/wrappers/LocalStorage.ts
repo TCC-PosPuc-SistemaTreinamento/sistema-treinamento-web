@@ -6,6 +6,10 @@ export class LocalStorage {
     
     private localStorage = window.localStorage;
 
+    clear() {
+        this.localStorage.clear();
+    }
+
     persist(key: string, item: any){
         if(!_.isEmpty(key))
             return this.localStorage.setItem(key, JSON.stringify(item));

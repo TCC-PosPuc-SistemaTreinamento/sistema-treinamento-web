@@ -8,6 +8,7 @@ import { CourseCreateComponent } from './views/courses/course-create/course-crea
 import { CourseDetailComponent } from './views/courses/course-detail/course-detail.component';
 import { CourseEditComponent } from './views/courses/course-edit/course-edit.component';
 import { RecoveryPasswordComponent } from './views/recovery-password/recovery-password.component';
+import { HomeComponent } from './views/home/home.component';
 
 export const AppRoutes: Routes = [
     {
@@ -18,6 +19,11 @@ export const AppRoutes: Routes = [
     {
         path: "login",
         component: LoginComponent
+    },
+    {
+        path: "home",
+        component: HomeComponent,
+        pathMatch: "full"
     },
     {
         path: "password/forgot",

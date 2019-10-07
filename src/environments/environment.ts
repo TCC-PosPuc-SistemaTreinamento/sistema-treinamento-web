@@ -4,6 +4,6 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3000',
+  apiBaseUrl: 'http://localhost:3001/api',
   frontBaseUrl: 'http:localhost:4200'
 };

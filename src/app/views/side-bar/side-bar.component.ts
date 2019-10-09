@@ -14,17 +14,20 @@ export class SideBarComponent implements OnInit {
   private menuToggled: boolean = false;
   public loggedUser: any;
   private selectedPage;
-  public eventsAccess = false;
+
   public homeAccess = false;
+  public dashboardAccess = false;
+  public myCoursesAccess = false;
+  public conquestsAccess = false;
+  public certificatesAccess = false;
+  public questionsAccess = false;
+  public suggestionsAccess = false;
+  public usersAccess = false;
   public categoriesAccess = false;
-  public contentsAccess = false;
   public departmentsAccess = false;
-  public quizzesAccess = false;
   public rolesAccess = false;
-  public suggestionAccess = false;
-  public sectorSuggestionsAccess = false;
-  public tagAccess = false;
-  public userAccess = false;
+  public permissionsAccess = false;
+
   public superAdmin = false;
   public isAdministrator = false;
 
@@ -56,18 +59,18 @@ export class SideBarComponent implements OnInit {
   }
 
   private getPermissions(){
-    this.eventsAccess = true;
     this.homeAccess = true;
+    this.dashboardAccess = true;
+    this.myCoursesAccess = true;
+    this.conquestsAccess = true;
+    this.certificatesAccess = true;
+    this.questionsAccess = true;
+    this.suggestionsAccess = true;
+    this.usersAccess = true;
     this.categoriesAccess = true;
-    this.contentsAccess = true;
     this.departmentsAccess = true;
-    this.quizzesAccess = true;
     this.rolesAccess = true;
-    this.suggestionAccess = true;
-    this.sectorSuggestionsAccess = true;
-    this.tagAccess = true;
-    this.userAccess = true;
-    this.superAdmin = true;
+    this.permissionsAccess = true;
     this.isAdministrator = true;
   }
 
@@ -92,15 +95,6 @@ export class SideBarComponent implements OnInit {
     overlay.style.animation = "dismiss .35s";
     overlay.style.display = "none";
     document.body.style.overflow = "initial";
-  }
-
-  private choosePage(button) {
-    console.log('escolheu a pagina: ', button)
-  }
-
-  private suggestionPage() {
-    //this.router.navigate(["suggestions"]);
-    console.log('sugestão')
   }
 
 }

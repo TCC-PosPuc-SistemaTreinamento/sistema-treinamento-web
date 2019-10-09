@@ -24,9 +24,18 @@ import { UserDetailComponent } from './views/users/user-detail/user-detail.compo
 import { UserCreateComponent } from './views/users/user-create/user-create.component';
 import { UserEditComponent } from './views/users/user-edit/user-edit.component';
 import { HomeComponent } from './views/home/home.component';
-import { CetegoriesComponent } from './views/cetegories/cetegories.component';
+import { CategoriesComponent } from './views/categories/categories.component';
 import { PermissionsComponent } from './views/permissions/permissions.component';
 import { RecoveryPasswordComponent } from './views/recovery-password/recovery-password.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { ConquestsComponent } from './views/conquests/conquests.component';
+import { CertificatesComponent } from './views/certificates/certificates.component';
+import { SuggestionsComponent } from './views/suggestions/suggestions.component';
+import { DepartmentsComponent } from './views/departments/departments.component';
+import { RolesComponent } from './views/roles/roles.component';
+import { QuestionsComponent } from './views/questions/questions.component';
+import { CourseVisualizationComponent } from './views/courses/course-visualization/course-visualization.component';
+import { CourseMyComponent } from './views/courses/course-my/course-my.component';
 
 
 @NgModule({
@@ -43,9 +52,18 @@ import { RecoveryPasswordComponent } from './views/recovery-password/recovery-pa
     UserCreateComponent,
     UserEditComponent,
     HomeComponent,
-    CetegoriesComponent,
+    CategoriesComponent,
     PermissionsComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    DashboardComponent,
+    ConquestsComponent,
+    CertificatesComponent,
+    SuggestionsComponent,
+    DepartmentsComponent,
+    RolesComponent,
+    QuestionsComponent,
+    CourseVisualizationComponent,
+    CourseMyComponent
   ],
   imports: [
     BrowserModule,

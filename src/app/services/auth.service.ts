@@ -8,7 +8,7 @@ import { SecurityService } from './security.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private endPoint = '/users/authenticate';
+  private endPoint = '/auth/authenticate';
 
   constructor(private httpClient: HttpClient,
               private localStorage: LocalStorage,

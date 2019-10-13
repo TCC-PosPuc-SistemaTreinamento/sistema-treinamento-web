@@ -20,18 +20,19 @@ export class HttpClient {
     authToken: string = ""; 
     
     constructor(private http: Http,
-                private localStora: LocalStorage) {}
+                private localStorage: LocalStorage) {}
 
     getHeaders() {
         this.authToken = this.getToken();
-        this.headers = this.authToken !== null ? new Headers({ 'Authorization': 'Bearer ' + this.authToken }) : new Headers({});
+        // this.headers = this.authToken !== null ? new Headers({ 'Authorization': 'Bearer ' + this.authToken }) : new Headers({});
+        this.headers = this.authToken !== null ? new Headers({ 'x-access-token': this.authToken }) : new Headers({});
         this.headers.append('Content-Type', 'application/json');
         this.options = new RequestOptions({ headers: this.headers });
         return this.options;
     }
 
     getToken(): string {
-        const userFromLocalStorage = this.localStora.retrieve('token');
+        const userFromLocalStorage = this.localStorage.retrieve('token');
         if(userFromLocalStorage !== null)
             return userFromLocalStorage;
         return null;
@@ -43,10 +44,8 @@ export class HttpClient {
           .get(this.baseUrl + endPoint + filter, headers)
           .pipe(map(r => r.json()))
           .toPromise()
-          .catch((error: any) => {
-            return Observable.throw(error);
-          })
-      }
+          .catch((error: any) => error.json() || 'Server error');
+    }
     
       getById(endPoint: String, id: String) {
         const headers = this.getHeaders();

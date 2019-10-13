@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/home']);
             }
         } else {
+            console.log(response)
             const res = JSON.parse(response._body);
             return swal("Não foi possível realizar o login", res.message, "error")
         }

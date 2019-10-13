@@ -370,6 +370,17 @@ table{
 }
 // ---
 
+// Date
+.ngx-datepicker-input{
+    border: 1px solid #bfbfbf !important;
+    padding: 8px 10px !important;
+    width: 100% !important;
+}
+.ngx-datepicker-calendar-container{
+    z-index: 1 !important;
+}
+// ---
+
 // Loader
 @keyframes spin {
     0% { transform: rotate(0deg); }

@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+
+import { HttpClient } from '../shared/wrappers/HttpClient';
+import { User } from '../models/user.model';
+
+@Injectable()
+export class UserService {
+    constructor(private httpClient: HttpClient) {}
+
+    endPoint: String = "/users";
+    async getAll(): Promise<User[]> {
+        let response = await this.httpClient.get(this.endPoint);
+        return response;
+    }
+
+    async getById(id: String): Promise<User> {
+        let response = await this.httpClient.get(`${this.endPoint}/${id}`);
+        return response;
+    }
+
+    async create(user: User): Promise<any> {
+        return await this.httpClient.post(this.endPoint, user);
+    }
+    
+    async edit(user: User) {
+        return await this.httpClient.update(this.endPoint, user._id, user);
+    }
+
+}

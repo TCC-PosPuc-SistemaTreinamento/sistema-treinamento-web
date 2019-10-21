@@ -17,12 +17,6 @@ section{
     width:  100%;
     z-index: -1;
     overflow: $over;
-    @include xs{
-        background: $color-secondary
-    }
-    @include sm{
-        background: $color-secondary
-    }
 }
 
 a{

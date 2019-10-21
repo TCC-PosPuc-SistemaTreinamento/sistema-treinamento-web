@@ -1,20 +1,111 @@
 <div class="content-card">
-    
-  <div class="col centered-title" *ngIf="loading">
-      <h1>Categorias</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
-  </div>
 
-  <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Categorias</h1>
-          </div>
-      </div>
-      <hr>    
+    <div class="col centered-title" *ngIf="loading">
+        <h1>Categorias</h1>
+        <div class="row justify-content-center">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="!loading">
+        <div class="row">
+            <div class="col centered-title">
+                <h1>Categorias</h1>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Listagem de categorias</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let categ of categories; let i = index">
+                                    <td>{{ categ.name }}</td>
+                                    <td>
+                                        <button class="btn btn-primary" title="Editar" data-toggle="modal" 
+                                            [attr.data-target]="'#categ-' + i">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="categ-{{ i }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="CategoriaTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="CategoriaTitle">Edição de categoria</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Fechar">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="categ.name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Fechar</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-dismiss="modal" (click)="edit(categ)">Salvar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newCategory">
+                            <i class="fa fa-plus"></i> Nova categoria
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="newCategory" tabindex="-1" role="dialog"
+                            aria-labelledby="CategoriaTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="CategoriaTitle">Nova categoria</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" [(ngModel)]="category.name">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                            (click)="save()">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
-  </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>

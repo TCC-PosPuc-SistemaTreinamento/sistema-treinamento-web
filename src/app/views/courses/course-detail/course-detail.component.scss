@@ -1,0 +1,13 @@
+@import '../../../../styles';
+
+.course-image img {
+    max-width: 100%;
+}
+
+.course-rating {
+    font-size: 30px;
+    
+    .checked {
+        color: orange;
+    }
+}

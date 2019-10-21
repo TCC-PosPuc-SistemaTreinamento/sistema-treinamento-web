@@ -78,7 +78,7 @@
             <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/categories']"
                 *ngIf='categoriesAccess == true'>
                 <i class="fa fa-list"></i>
-                <label>Categorias</label>
+                <label>Cursos/Categorias</label>
             </div>
 
             <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/departments']" 
@@ -206,7 +206,7 @@
                 <div class="icon">
                     <i class="fa fa-list"></i>
                 </div>
-                <label>Categorias</label>
+                <label>Cursos/Categorias</label>
             </div>
             <div class="menu-item sub-item" [routerLink]="['/departments']" 
                 [ngClass]="{'focused': selectedPage == 'Departamentos'}" *ngIf='departmentsAccess == true'>

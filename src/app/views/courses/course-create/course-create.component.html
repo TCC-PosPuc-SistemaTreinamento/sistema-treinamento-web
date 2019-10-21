@@ -15,6 +15,92 @@
       </div>
       <hr>    
 
+      <div class="row">
+        <div class="col-md-12">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Estrutura do curso</h4>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Nome do curso</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="name" [(ngModel)]="course.name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Categoria do curso</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="category" [(ngModel)]="course.name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Visibilidade do curso</label>
+                            <div class="col-md-10">
+                                <ui-switch color="#3cb58a" name="visible" [(ngModel)]="course.visible"></ui-switch>
+                                {{ course.visible ? "Mostrar" : "Ocultar" }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Descrição do curso</label>
+                            <div class="col-md-10">
+                                <textarea rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Capa do curso</label>
+                            <div class="col-md-10">
+                                <input type="file" name="image" [(ngModel)]="course.image">
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Conteúdo do curso</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Posição</th>
+                                    <th>Título</th>
+                                    <th>Conteúdo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span><i class="fa fa-bars"></i></span></td>
+                                    <td>1</td>
+                                    <td>Introdução a pesquisa</td>
+                                    <td><i class="fa fa-caret-down"></i></td>
+                                </tr>
+                                <tr>
+                                    <td><span><i class="fa fa-bars"></i></span></td>
+                                    <td>2</td>
+                                    <td>Ferramentas de pesquisa</td>
+                                    <td><i class="fa fa-caret-down"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small>Campos com (<span style="color:red;">*</span>) são obrigatórios</small>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button class="btn btn-warning" type="button" (click)="cancel()">
+                                    <i class="fa fa-close"></i> Cancelar
+                                </button>
+                                <button class="btn btn-success ml-3" type="button" (click)="save()">
+                                    <i class="fa fa-check"></i> Cadastrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
   </div>
 </div>

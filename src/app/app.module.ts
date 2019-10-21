@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { OwlModule } from 'ngx-owl-carousel';
 
 import { AppRoutes } from './app.routing';
 import { AuthGuard } from './shared/AuthGuard';
@@ -16,6 +17,7 @@ import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
 import { DepartmentService } from './services/department.service';
 import { CommonHelper } from './shared/helpers/CommonHelper';
+import { CategoryService } from './services/category.service';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './views/courses/courses.component';
@@ -82,7 +84,8 @@ import { UiSwitchModule } from 'ng2-ui-switch';
     RouterModule.forRoot(AppRoutes),
     FactoryModule,
     UiSwitchModule,
-    NgDatepickerModule
+    NgDatepickerModule,
+    OwlModule
   ],
   providers: [
     AuthGuard,
@@ -90,6 +93,7 @@ import { UiSwitchModule } from 'ng2-ui-switch';
     LocalStorage,
     CommonHelper,
     SecurityService,
+    CategoryService,
     AuthService,
     UserService,
     RoleService,

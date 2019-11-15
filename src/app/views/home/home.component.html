@@ -10,11 +10,18 @@
   <div class="container-fluid" *ngIf="!loading">
       <div class="row">
           <div class="col centered-title">
-              <h1>Seja bem-vindo</h1>
+              <h1>Seja bem-vindo, {{ loggedUser ? loggedUser.name : "" }}</h1>
           </div>
       </div>
       <hr>    
-
-
+      <div *ngFor="let course of courses">
+          <h2>
+              <a [routerLink]="['/courses', course._id]">{{ course.name }}</a>
+          </h2>
+          
+          <button class="btn btn-primary" (click)="register(course._id)">
+              Inscrever
+          </button>
+      </div>
   </div>
 </div>

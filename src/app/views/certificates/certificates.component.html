@@ -14,7 +14,25 @@
           </div>
       </div>
       <hr>    
-
-
+      <div class="row">
+        <div class="col-md-12 d-flex flex-wrap">
+            <div *ngIf="certificates && certificates.length > 0">
+                <div class="certificate" *ngFor="let c of certificates">
+                    <div class="certificate-image">
+                        <img src="../../../assets/images/certificado1.png" alt="certificado">
+                    </div>
+                    <div class="certificate-content">
+                        <div class="certificate-content-title">
+                            <h3>{{ c.course ? c.course.name : '' }}</h3>
+                        </div>
+                        <button class="btn btn-wcapp">Download do certificado</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="certificates.length == 0" class="col-sm-12">
+                <p class="certificate-empty">Você não possui certificados no momento.</p>
+            </div>
+        </div>
+      </div>
   </div>
 </div>

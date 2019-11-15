@@ -1,0 +1,47 @@
+@import '../../../styles.scss';
+
+.certificate-margin {
+    margin: 15px !important;
+}
+
+.certificate {
+    max-width: 440px;
+    width: 100%;
+    border: 1px solid #ddd;
+    box-shadow: 1px 3px 10px #888;
+    border-radius: 5px;
+    min-height: 150px;
+    display: flex;
+    margin: 10px;
+
+    &-image {
+        min-width: 150px;
+        max-width: 100%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &-content {
+        width: 100%;
+        padding: 10px;
+
+        &-title {
+            min-height: 90px;
+        }
+    }
+}
+
+.certificate-empty {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #777;
+    border: 1px solid #bbb;
+    padding: 15px 25px;
+    border-radius: 7px;
+    background-color: #eee;
+    text-align: center;
+    margin-top: 30px;
+}

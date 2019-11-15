@@ -1,21 +1,23 @@
 <section></section>
 <div class="nav-margin hidden-md-up"></div>
 <div class="overlay" id="overlay" (click)="toggleMenu()"></div>
+
+<!-- Mobile -->
 <nav class="navbar fixed-top hidden-md-up">
 
     <button class="navbar-toggler navbar-toggler-left" (click)="toggleMenu()" type="button">
         <i class="fa fa-bars"></i>
     </button>
     <div class="navbar-brand">
-        <img class="w" src="../../assets/images/logo-w.png" alt="">
-        <img class="h" src="../../assets/images/logo-admin-text.png" alt="">
+        <!-- <img class="w" src="../../assets/images/logo-w.png" alt="">
+        <img class="h" src="../../assets/images/logo-admin-text.png" alt=""> -->
     </div>
 
     <div class="sidemenu" id="sidemenu">
 
         <div class="nav-btn borderless">
-            <i class="fa fa-user-circle-o"></i>
-            <label>Rodrigo</label>
+            <i class="fa fa-user"></i>
+            <label>{{ loggedUser ? loggedUser.name : "" }}</label>
         </div>
 
         <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/home']"
@@ -32,7 +34,7 @@
 
         <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/courses/my']" 
             *ngIf='myCoursesAccess == true'>
-            <i class="fa fa-pencil-square-o"></i>
+            <i class="fas fa-laptop-code"></i>
             <label>Meus cursos</label>
         </div>
 
@@ -50,7 +52,7 @@
         
         <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/questions']"
             *ngIf="questionsAccess == true">
-            <i class="fa fa-check-circle-o"></i>
+            <i class="fa fa-check-circle"></i>
             <label>Questões</label>
         </div>
         
@@ -92,12 +94,7 @@
                 <i class="fa fa-address-card-o"></i>
                 <label>Cargos</label>
             </div>
-
-            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/permissions']" 
-                *ngIf='isAdministrator == true'>
-                <i class="fa fa-key"></i>
-                <label>Permissões</label>
-            </div>
+            
         </div>
 
         <div class="nav-btn logout" (click)="logOut()">
@@ -107,18 +104,19 @@
     </div>
 </nav>
 
+<!-- Desktop -->
 <div id="sidebar">
 
     <div class="menu-logo">
-        <img class="w" src="../../assets/images/logo-w.png" alt="">
-        <img class="h" src="../../assets/images/logo-admin-text.png" alt="">
+        <!-- <img class="w" src="../../assets/images/logo-w.png" alt="">
+        <img class="h" src="../../assets/images/logo-admin-text.png" alt=""> -->
     </div>
 
     <div class="sidebar-item-wrappers">
 
         <a href="#sidebar-logout" data-toggle="collapse" aria-expanded="false" class="menu-item menu-item-has-items">
             <div class="icon">
-                <i class="fa fa-user-circle-o"></i>
+                <i class="fa fa-user"></i>
             </div>
             <label>{{ loggedUser ? loggedUser.name : "" }}
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -151,7 +149,7 @@
         <div class="menu-item" [routerLink]="['/courses/my']" 
             [ngClass]="{'focused': selectedPage == 'MeusCursos'}" *ngIf='myCoursesAccess == true'>
             <div class="icon">
-                <i class="fa fa-pencil-square-o"></i>
+                <i class="fas fa-laptop-code"></i>
             </div>
             <label>Meus cursos</label>
         </div>
@@ -172,7 +170,7 @@
         <div class="menu-item" [routerLink]="['/questions']" 
             [ngClass]="{'focused': selectedPage == 'Questões'}" *ngIf="questionsAccess == true">
             <div class="icon">
-                <i class="fa fa-check-circle-o"></i>
+                <i class="fa fa-check-circle"></i>
             </div>
             <label>Questões</label>
         </div>
@@ -222,14 +220,7 @@
                 </div>
                 <label>Cargos</label>
             </div>
-
-            <div class="menu-item sub-item" [routerLink]="['/permissions']" 
-                [ngClass]="{'focused': selectedPage == 'Permissões'}" *ngIf='isAdministrator == true'>
-                <div class="icon">
-                    <i class="fa fa-key"></i>
-                </div>
-                <label>Permissões</label>
-            </div>
+            
         </div>
 
     </div>

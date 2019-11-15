@@ -1,6 +1,5 @@
-// @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+//@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import './assets/scss/variables';
 @import './assets/scss/mixins';
 @import './assets/scss/mediaqueries';
@@ -381,6 +380,15 @@ table{
 }
 // ---
 
+// Modal
+.modal {
+    &-backdrop {
+        opacity: .9 !important;
+    }
+}
+
+// ---
+
 // Loader
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -439,6 +447,54 @@ app-root:empty + .root-loader{
     z-index: 9999;
 }
 // ---
+
+// Tag-input
+.switch {
+    vertical-align: middle !important;
+}
+
+.ng2-tag-input {
+    border: 1px solid #bfbfbf !important;
+    height: 38px;
+    max-width: 100%;
+    padding: 7px 12px !important;
+}
+
+.tag__text {
+    line-height: 2;
+    font-size: 11px;
+    padding-left: 6px;
+}
+
+delete-icon svg {
+    height: 10px !important;
+    line-height: 1;
+    vertical-align: top !important;
+    margin-top: 7px;
+    font-weight: 900;
+    color: #fff !important;
+}
+
+.ng2-tags-container tag {
+    padding: 0 5px !important;
+    height: 22px !important;
+    border-radius: 60px !important;
+    background-color: #00bbd9 !important;
+    color: #fff !important;
+}
+
+delete-icon:hover {
+    transform: none !important;
+}
+
+.ng2-tag-input__text-input {
+    height: auto !important;
+}
+
+.bootstrap tag {
+    background: #00bbd9 !important;
+}
+// --
 
 // Responsive
 

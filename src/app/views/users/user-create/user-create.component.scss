@@ -1,0 +1,22 @@
+@import '../../../../styles.scss';
+
+.permission-items {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+    .form-check-inline {
+        
+        i {
+            font-size: 70px;
+            color: $color-danger;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    }
+
+    
+
+}

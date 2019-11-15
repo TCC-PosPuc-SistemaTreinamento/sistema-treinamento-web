@@ -26,7 +26,6 @@ export class SideBarComponent implements OnInit {
   public categoriesAccess = false;
   public departmentsAccess = false;
   public rolesAccess = false;
-  public permissionsAccess = false;
 
   public superAdmin = false;
   public isAdministrator = false;
@@ -70,7 +69,6 @@ export class SideBarComponent implements OnInit {
     this.categoriesAccess = true;
     this.departmentsAccess = true;
     this.rolesAccess = true;
-    this.permissionsAccess = true;
     this.isAdministrator = true;
   }
 

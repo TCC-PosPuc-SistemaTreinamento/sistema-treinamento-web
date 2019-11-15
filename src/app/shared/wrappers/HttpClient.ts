@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { LocalStorage } from '../wrappers/LocalStorage';
-
+import { HttpRequest } from '@angular/common/http';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/toPromise';

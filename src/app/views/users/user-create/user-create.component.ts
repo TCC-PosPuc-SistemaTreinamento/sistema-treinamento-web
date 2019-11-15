@@ -22,6 +22,7 @@ export class UserCreateComponent implements OnInit {
   user: User = new User();
   datePickerOptions = this.commonHelper.getDatePickerOptions();
   datePattern = /^(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}$/i;
+  passwordConfirm: String = '';
 
   constructor(private roleService: RoleService,
               private departmentService: DepartmentService,

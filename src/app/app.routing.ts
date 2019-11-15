@@ -15,6 +15,8 @@ import { DashboardComponent } from "./views/dashboard/dashboard.component";
 import { ConquestsComponent } from "./views/conquests/conquests.component";
 import { CertificatesComponent } from "./views/certificates/certificates.component";
 import { QuestionsComponent } from "./views/questions/questions.component";
+import { QuestionCreateComponent } from "./views/questions/question-create/question-create.component";
+import { QuestionEditComponent } from "./views/questions/question-edit/question-edit.component";
 import { SuggestionsComponent } from "./views/suggestions/suggestions.component";
 import { UsersComponent } from "./views/users/users.component";
 import { UserCreateComponent } from "./views/users/user-create/user-create.component";
@@ -23,7 +25,8 @@ import { UserDetailComponent } from "./views/users/user-detail/user-detail.compo
 import { CategoriesComponent } from "./views/categories/categories.component";
 import { DepartmentsComponent } from "./views/departments/departments.component";
 import { RolesComponent } from "./views/roles/roles.component";
-import { PermissionsComponent } from "./views/permissions/permissions.component";
+import { MaterialComponent } from './views/courses/course-visualization/material/material.component';
+
 
 export const AppRoutes: Routes = [
     {
@@ -73,6 +76,12 @@ export const AppRoutes: Routes = [
                 pathMatch: "full"
             },
             {
+                path: "material/:material",
+                component: MaterialComponent,
+                canActivate: [AuthGuard],
+                pathMatch: "full"
+            },
+            {
                 path: "",
                 component: CoursesComponent,
                 canActivate: [AuthGuard],
@@ -103,8 +112,26 @@ export const AppRoutes: Routes = [
     },
     {
         path: "questions",
-        component: QuestionsComponent,
-        pathMatch: "full"
+        children: [
+            {
+                path: "new",
+                component: QuestionCreateComponent,
+                canActivate: [AuthGuard],
+                pathMatch: "full"
+            },
+            {
+                path: "edit/:id",
+                component: QuestionEditComponent,
+                canActivate: [AuthGuard],
+                pathMatch: "full"
+            },
+            {
+                path: "",
+                component: QuestionsComponent,
+                canActivate: [AuthGuard],
+                pathMatch: "full"
+            }
+        ]
     },
     {
         path: "suggestions",
@@ -153,11 +180,6 @@ export const AppRoutes: Routes = [
     {
         path: "roles",
         component: RolesComponent,
-        pathMatch: "full"
-    },
-    {
-        path: "permissions",
-        component: PermissionsComponent,
         pathMatch: "full"
     }
 ];

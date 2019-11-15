@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+  }

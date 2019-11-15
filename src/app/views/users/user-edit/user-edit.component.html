@@ -1,123 +1,171 @@
 <div class="content-card">
 
-    <div class="col centered-title" *ngIf="loading">
-        <h1>Editar usuário</h1>
-        <div class="row justify-content-center">
-            <div class="loader"></div>
-        </div>
-    </div>
-
-    <div class="container-fluid" *ngIf="!loading">
-        <div class="row">
-            <div class="col centered-title">
-                <h1>Editar usuário</h1>
+        <div class="col centered-title" *ngIf="loading">
+            <h1>Editar usuário</h1>
+            <div class="row justify-content-center">
+                <div class="loader"></div>
             </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <form>
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label>Nome:<span style="color:red;">*</span></label>
-                                <input type="text" name="name" class="form-control" placeholder="Nome do usuário"
-                                    [(ngModel)]="user.name" />
+    
+        <div class="container-fluid" *ngIf="!loading">
+            <div class="row">
+                <div class="col centered-title">
+                    <h1>Editar usuário</h1>
+                </div>
+            </div>
+            <hr>
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <section class="personal-data">
+                            <h3 class="title-section">Dados pessoais</h3>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label>Nome:<span style="color:red;">*</span></label>
+                                        <input type="text" name="name" class="form-control" placeholder="Nome do usuário"
+                                            [(ngModel)]="user.name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>CPF:<span style="color:red;">*</span></label>
+                                        <input type="text" name="cpf" class="form-control" placeholder="CPF do usuário"
+                                            [(ngModel)]="user.cpf" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Data de nascimento:<span style="color:red;">*</span></label>
+                                        <ng-datepicker [options]="datePickerOptions" [(ngModel)]="user.born" name="born">
+                                        </ng-datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Sexo:</label>
+                                        <select name="sex" class="form-control" [(ngModel)]="user.sex">
+                                            <option value="0">Selecione o sexo</option>
+                                            <option value="1">Masculino</option>
+                                            <option value="2">Feminino</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Telefone:</label>
+                                        <input type="text" name="phone" class="form-control" placeholder="Telefone"
+                                            [(ngModel)]="user.phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Cargo:<span style="color:red;">*</span></label>
+                                        <select name="role" [(ngModel)]="user.role" class="form-control">
+                                            <option value="" selected="selected">Selecione o cargo</option>
+                                            <option [ngValue]="role._id" *ngFor="let role of roles">{{ role.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Departamento:<span style="color:red;">*</span></label>
+                                        <select name="department" [(ngModel)]="user.department" class="form-control">
+                                            <option value="" selected="selected">Selecione o departamento</option>
+                                            <option value="{{ dp._id }}" *ngFor="let dp of departments">{{ dp.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Foto de perfil</label><br>
+                                        <input type="file" name="picture" [(ngModel)]="user.picture" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <hr>
+                        <section class="login-data">
+                            <h3 class="title-section">Dados de login</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>E-mail:<span style="color:red;">*</span></label>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="E-mail do usuário" [(ngModel)]="user.username" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Senha:<span style="color:red;">*</span></label>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Senha do usuário" [(ngModel)]="user.password" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Confirmar senha:<span style="color:red;">*</span></label>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Confirmação de senha" [(ngModel)]="passwordConfirm" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <hr>
+                        <section class="permission-data">
+                            <h3 class="title-section">Permissão do usuário</h3>
+                            <div class="form-group permission-items">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="permission1" name="permission"
+                                        [(ngModel)]="user.privilege" value="user">
+                                    <label class="form-check-label" for="permission1">
+                                        <i class="fas fa-user-graduate"></i><br>
+                                        <span>Usuário comum</span>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="permission2" name="permission"
+                                        [(ngModel)]="user.privilege" value="instructor">
+                                    <label class="form-check-label" for="permission2">
+                                        <i class="fas fa-chalkboard-teacher"></i><br>
+                                        <span>Instrutor</span>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="permission3" name="permission"
+                                        [(ngModel)]="user.privilege" value="admin">
+                                    <label class="form-check-label" for="permission3">
+                                        <i class="fas fa-user-cog"></i><br>
+                                        <span>Administrador</span>
+                                    </label>
+                                </div>
+                            </div>
+    
+                        </section>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small>Campos com (<span style="color:red;">*</span>) são obrigatórios</small>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button class="btn btn-warning" type="button" (click)="cancel()">
+                                    <i class="fa fa-close"></i> Cancelar
+                                </button>
+                                <button class="btn btn-success ml-3" type="button" (click)="edit()">
+                                    <i class="fa fa-check"></i> Editar
+                                </button>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>CPF:<span style="color:red;">*</span></label>
-                                <input type="text" name="cpf" class="form-control" placeholder="CPF do usuário"
-                                    [(ngModel)]="user.cpf" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Data de nascimento:<span style="color:red;">*</span></label>
-                                <ng-datepicker [options]="datePickerOptions" [(ngModel)]="user.born" name="born"></ng-datepicker>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Sexo:</label>
-                                <select name="sex" class="form-control" [(ngModel)]="user.sex">
-                                    <option value="0">Selecione o sexo</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Feminino</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Telefone:</label>
-                                <input type="text" name="phone" class="form-control" placeholder="Telefone"
-                                    [(ngModel)]="user.phone">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Cargo:<span style="color:red;">*</span></label>
-                                <select name="role" [(ngModel)]="user.role" class="form-control">
-                                    <option value="" selected="selected">Selecione o cargo</option>
-                                    <option [ngValue]="role._id" *ngFor="let role of roles">{{ role.name }}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Departamento:<span style="color:red;">*</span></label>
-                                <select name="department" [(ngModel)]="user.department" class="form-control">
-                                    <option value="" selected="selected">Selecione o departamento</option>
-                                    <option value="{{ dp._id }}" *ngFor="let dp of departments">{{ dp.name }}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>E-mail:<span style="color:red;">*</span></label>
-                                <input type="email" name="email" class="form-control" placeholder="E-mail do usuário"
-                                    [(ngModel)]="user.username" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Senha:<span style="color:red;">*</span></label>
-                                <input type="password" name="password" class="form-control"
-                                    placeholder="Senha do usuário" [(ngModel)]="user.password" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Foto de perfil</label><br>
-                                <input type="file" name="picture" [(ngModel)]="user.picture" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <small>Campos com (<span style="color:red;">*</span>) são obrigatórios</small>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button class="btn btn-warning" type="button" (click)="cancel()">
-                                <i class="fa fa-close"></i> Cancelar
-                            </button>
-                            <button class="btn btn-success ml-3" type="button" (click)="edit()">
-                                <i class="fa fa-check"></i> Editar
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>

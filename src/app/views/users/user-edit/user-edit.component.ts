@@ -34,6 +34,7 @@ export class UserEditComponent implements OnInit {
     this.loading = true;
     const id = this.route.snapshot.params['id'];
     this.user = await this.userService.getById(id);
+    console.log(this.user)
     this.roles = await this.roleService.getAll();
     this.departments = await this.departmentService.getAll();
     this.loading = false;

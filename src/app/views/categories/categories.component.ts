@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Course } from '../../models/course.model';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 declare const swal: any;
@@ -14,6 +15,7 @@ export class CategoriesComponent implements OnInit {
   loading: boolean = true;
   categories: Category[];
   category: Category = new Category();
+  courses: Course[] = [];
 
   constructor(private categoryService: CategoryService,
               private router: Router) { }
@@ -45,6 +47,11 @@ export class CategoriesComponent implements OnInit {
     } catch(err) {
       swal("Erro", "Erro ao atualizar categoria", "error");
     }
+  }
+
+  async changeCategory(category) {
+    this.courses = await this.categoryService.getCoursesByCategory(category);
+    console.log(this.courses)
   }
 
 }

@@ -1,0 +1,38 @@
+.courseCard {
+    max-width: 300px;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 1px 3px 10px #888;
+    border-radius: 6px;
+    margin: .5rem;
+    max-height: 375px;
+    min-height: 375px;
+
+    &__thumb {
+        width: 100%;
+        height: 200px;
+
+        &__img {
+            width: 100%;
+            height: inherit;
+        }
+    }
+
+    &__body {
+        padding: 20px 10px;
+        
+        &__title {
+            max-height: 50px;
+            min-height: 50px;
+            height: 100%;
+            overflow: hidden;
+            // text-overflow: ellipsis;
+            // -webkit-line-clamp: 2;
+            // display: -webkit-box;
+            // -webkit-box-orient: vertical;   
+        }
+    }
+
+
+
+}

@@ -1,7 +1,7 @@
 <div class="content-card">
     
   <div class="col centered-title" *ngIf="loading">
-      <h1>Curso</h1>
+      <h1>Detalhes do curso</h1>
       <div class="row justify-content-center">
           <div class="loader"></div>
       </div>
@@ -10,7 +10,7 @@
   <div class="container-fluid" *ngIf="!loading">
       <div class="row">
           <div class="col centered-title">
-              <h1>Curso</h1>
+              <h1>Detalhes do curso</h1>
           </div>
       </div>
       <hr>    
@@ -25,8 +25,8 @@
                 </div>
                 <div class="col-md-8">
                     <div class="course-description">
-                        <h2>Curso introdutório de programação</h2>
-                        <span>Este é excelente para pessoas que estão iniciando na área de programação</span>
+                        <h2>{{ course.name }}</h2>
+                        <span>{{ course.description }}</span>
                         <div class="row">
                             <div class="col-6">
                                 <div class="course-rating">
@@ -41,9 +41,9 @@
                                 <span>13.178 empregados inscritos</span>
                             </div>
                         </div>
-                        <h5>Instrutor: José Almeida</h5>
+                        <h5>Instrutor: {{ course.instructor }}</h5>
                         <div class="text-right">
-                            <button class="btn btn-success">Inscrever</button>
+                            <button class="btn btn-success" (click)="enroll()">Inscrever</button>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,125 @@
+@import '../../../../styles';
+
+.course-item {
+    box-shadow: 5px 5px 15px #d1d1d1;
+}
+
+.course-item-header {
+    background-image: url('../../../../assets/images/capa-course.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px 10px 0 0;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+
+    &:after {
+        // background: rgba($color-primary, .8);
+        background: linear-gradient(to bottom left, $color-terciary, $color-primary);
+        border-radius: 10px 10px 0 0;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.course-item-header-title {
+    bottom: 0;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    padding: 20px;
+    position: absolute;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 9999;
+}
+
+.course-item-footer {
+    padding: 15px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+        margin: 0 15px;
+        transition: all 400ms;
+        color: $color-primary;
+
+        i {
+            height: 15px;
+            width: 20px;
+            font-size: 1.3em;
+            color: $color-primary;
+        }
+
+        &:hover {
+            opacity: .6;
+        }
+    
+        &.is-disabled{
+            opacity: .3;
+        }
+    }
+
+    .shadow {
+        background: #d1d1d1;
+        border-radius: 0 0 10px 10px;
+        bottom: 0;
+        display: block;
+        height: 5px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.course-content {
+    .owl-nav {
+        margin-top: 0 !important;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+
+        .owl-prev,
+        .owl-next {
+            font-size: 0 !important;
+            position: absolute;
+            top: -30px;
+
+            &:after {
+                border-color: $color-primary;
+                border-style: solid;
+                border-width: 0 2px 2px 0;
+                content: '';
+                display: block;
+                height: 30px;
+                transition: border-color .4s;
+                width: 30px;
+            }
+
+            &:hover {
+                background: none;
+                opacity: .4;
+            }
+
+            &.disabled {
+                opacity: .3;
+            }
+        }
+
+        .owl-prev {
+            left: -40px;
+            transform: rotate(135deg);
+        }
+        .owl-next {
+            right: -40px;
+            transform: rotate(-45deg);
+        }
+    }
+}

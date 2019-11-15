@@ -1,0 +1,23 @@
+@import '../../../styles';
+
+.categ_courses-content {
+    margin-bottom: 25px;
+}
+
+.list-group {
+    max-height: 400px !important;
+    overflow-y: auto !important;
+    
+    .list-group-item {
+        margin: 5px 3px !important;
+        cursor: pointer !important;
+    
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        button {
+            margin-left: 3px;
+        }
+    }
+}

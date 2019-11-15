@@ -1,51 +1,31 @@
 <div class="content-card">
-    
-  <div class="col centered-title" *ngIf="loading">
-      <h1>Meus cursos</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
-  </div>
 
-  <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Meus cursos</h1>
-          </div>
-      </div>
-      <hr>    
-
-      <div class="row">
-        <div class="col-md-12 course-content">
-            <owl-carousel
-                [options]="customOption"
-                [items]="courses"
-                [carouselClasses]="['owl-theme', 'row', 'sliding']">
-                <div class="course-item" *ngFor="let course of courses; let i = index">
-                    <header class="course-item-header">
-                        <h3 class="course-item-header-title">
-                            <span>BOTÃO TESTE {{ i+1 }}</span>
-                        </h3>
-                    </header>
-                    <footer class="course-item-footer">
-                        <a href="#" class="">
-                            <i class="fa fa-file"></i>
-                        </a>
-                        <a href="#" class="">
-                            <i class="fa fa-play"></i>
-                        </a>
-                        <a href="#" class="is-disabled">
-                            <i class="fa fa-puzzle-piece"></i>
-                        </a>
-                        <a href="#" class="">
-                            <i class="fa fa-star"></i>
-                        </a>
-                        <div class="shadow">
-                        </div>
-                    </footer>
-                </div>
-            </owl-carousel>
+    <div class="col centered-title" *ngIf="loading">
+        <h1>Meus cursos</h1>
+        <div class="row justify-content-center">
+            <div class="loader"></div>
         </div>
-      </div>
-  </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="!loading">
+        <div class="row">
+            <div class="col centered-title">
+                <h1>Meus cursos</h1>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12 d-flex flex-wrap">
+                <div *ngIf="courses && courses.length > 0">
+                    <div *ngFor="let c of courses">
+                        <app-course-card [course]="c.course"></app-course-card>
+                    </div>
+                </div>
+                <div *ngIf="courses.length == 0" class="col-sm-12">
+                    <p class="course-empty">Você não está matriculado em nenhum curso no momento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

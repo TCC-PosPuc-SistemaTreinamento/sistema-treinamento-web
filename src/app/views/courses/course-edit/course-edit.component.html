@@ -1,20 +1,265 @@
 <div class="content-card">
+
+        <div class="col centered-title" *ngIf="loading">
+            <h1>Edição de curso</h1>
+            <div class="row justify-content-center">
+                <div class="loader"></div>
+            </div>
+        </div>
     
-  <div class="col centered-title" *ngIf="loading">
-      <h1>Editar curso</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
-  </div>
-
-  <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Editar curso</h1>
-          </div>
-      </div>
-      <hr>    
-
-
-  </div>
-</div>
+        <div class="container-fluid" *ngIf="!loading">
+            <div class="row">
+                <div class="col centered-title">
+                    <h1>Edição de curso</h1>
+                </div>
+            </div>
+            <hr>
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h2>TESTETETETE</h2>
+                        <div *ngFor="let file of fileList">
+                            <img src="{{urlCourseFile}}/{{file.filename}}" alt="" *ngIf="file.isImage">
+                            <a href="{{urlCourseFile}}/{{file.filename}}" target="_blank" *ngIf="!file.isImage">{{ file.filename }}</a>
+                            <!-- <a href="javascript:void(0)" (click)="downloadFile(file.filename)">{{ file.filename }}</a> -->
+                        </div>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title-section">Estrutura do curso</h3>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Nome do curso</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="name" [(ngModel)]="course.name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Categoria do curso</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" name="category" [(ngModel)]="course.category" (change)="changeQuizCategory()">
+                                            <option *ngFor="let categ of categories" [value]="categ._id">{{ categ.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Instrutor do curso</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="instructor" [(ngModel)]="course.instructor">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Visibilidade do curso</label>
+                                    <div class="col-md-10">
+                                        <ui-switch color="#3cb58a" name="visible" [(ngModel)]="course.visible"></ui-switch>
+                                        {{ course.visible ? "Mostrar" : "Ocultar" }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Descrição do curso</label>
+                                    <div class="col-md-10">
+                                        <textarea rows="3" class="form-control" name="description" [(ngModel)]="course.description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Capa do curso</label>
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <input type="file" name="image" (change)="selectFile($event, 'capa')">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="" class="btn btn-wcapp btn-margin-right" (click)="upload()">
+                                                    <span class="btn-label">
+                                                        <i class="fa fa-upload"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Palavras-chave</label>
+                                    <div class="col-md-10">
+                                        <tag-input [(ngModel)]='course.keyWords' name="keyWords" [separatorKeys]="[' ','\n']" [placeholder]="'adicione palavras-chave'" [secondaryPlaceholder]="'Adicione palavras-chave'"></tag-input>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+    
+                            <!--start conteudo curso-->
+                            <div class="col-md-12 course-content" *ngIf="course.category != ''">
+                                <h3 class="title-section">Conteúdo do curso</h3>
+                                <div class="panel-group d-accordion">
+                                    <div class="panel panel-default course-unit" *ngFor="let unit of course.units; let i = index">
+                                        <div class="panel-heading" data-toggle="collapse"
+                                            data-parent=".d-accordion" [attr.href]="'#unit-' + i">
+                                            <h5 class="panel-title">
+                                                <span class="course-unit-position"><i class="fa fa-bars"></i></span>
+                                                {{ unit.name }} <i class="fa fa-pencil"></i>
+                                                <i class="fa fa-times pull-right" (click)="removeUnit(i)"></i>
+                                                <i class="fa fa-chevron-up pull-right"></i>
+                                            </h5>
+                                        </div>
+                                        <div id="unit-{{ i }}" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <div class="row course-unit-content">
+                                                    <div class="col-sm-4">
+                                                        <span class="course-unit-item" title="Material ditático" data-toggle="modal" [attr.data-target]="'#material-' + i">
+                                                            <i class="fa fa-file-text-o"></i>
+                                                        </span>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="material-{{ i }}" tabindex="-1" role="dialog"
+                                                            [attr.aria-labelledby]="'material-title-' + i" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                                <div class="modal-content text-left">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="material-title-{{ i }}">Material didático</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                            aria-label="Fechar">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <input type="file" name="material" class="form-control" (change)="selectFile($event, 'unit'+unit.position)">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Fechar</button>
+                                                                        <button type="button" class="btn btn-primary"
+                                                                            data-dismiss="modal" >Salvar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <span class="course-unit-item" title="Video-aula" data-toggle="modal" [attr.data-target]="'#video-' + i">
+                                                            <i class="fa fa-caret-square-o-right"></i>
+                                                        </span>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="video-{{ i }}" tabindex="-1" role="dialog"
+                                                            [attr.aria-labelledby]="'video-title-' + i" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                                <div class="modal-content text-left">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="video-title-{{ i }}">Vídeo-aula</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                            aria-label="Fechar">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="videos">
+                                                                            <div class="form-row" *ngFor="let video of unit.videos; let j = index">
+                                                                                <div class="form-group col-sm-5">
+                                                                                    <label>Descrição</label>
+                                                                                    <input type="texte" class="form-control" [(ngModel)]="video.legend" name="video-legend-{{ j }}">
+                                                                                </div>
+                                                                                <div class="form-group col-sm-5">
+                                                                                    <label>Link</label>
+                                                                                    <input type="text" class="form-control" [(ngModel)]="video.url" name="video-url-{{ j }}">
+                                                                                </div>
+                                                                                <div class="form-group col-sm-1">
+                                                                                    <label>{{ " " }}</label><br>
+                                                                                    <i class="fa fa-times" (click)="removeVideo(i, j)"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="element-add">
+                                                                            <button class="btn btn-success btn-circle" (click)="addVideo(i)">
+                                                                                <i class="fa fa-plus"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Fechar</button>
+                                                                        <button type="button" class="btn btn-primary"
+                                                                            data-dismiss="modal" >Salvar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <span class="course-unit-item" title="Atividade" data-toggle="modal" [attr.data-target]="'#activity-' + i">
+                                                            <i class="fa fa-puzzle-piece"></i>
+                                                        </span>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="activity-{{ i }}" tabindex="-1" role="dialog"
+                                                            [attr.aria-labelledby]="'activity-title-' + i" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                                <div class="modal-content text-left">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="activity-title-{{ i }}">Atividade</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                            aria-label="Fechar">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <label>Categoria</label>
+                                                                            <input type="text" class="form-control" [disabled]="true" name="categName-{{ i }}" [value]="categName">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Quiz</label>
+                                                                            <select class="form-control" name="unitQuiz-{{ i }}" [(ngModel)]="unit.activity">
+                                                                                <option value="null">Selecione o quiz</option>
+                                                                                <option *ngFor="let quiz of quizzes" [value]="quiz._id">{{ quiz.title }}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Fechar</button>
+                                                                        <button type="button" class="btn btn-primary"
+                                                                            data-dismiss="modal" >Salvar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-add">
+                                    <button class="btn btn-success btn-circle" (click)="addUnit()">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <hr>
+                            </div> <!--end conteudo curso-->
+    
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <small>Campos com (<span style="color:red;">*</span>) são obrigatórios</small>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <button class="btn btn-warning" type="button" [routerLink]="['/categories']">
+                                            <i class="fa fa-close"></i> Cancelar
+                                        </button>
+                                        <button class="btn btn-success ml-3" type="button" (click)="edit()" [disabled]="courseInvalid()">
+                                            <i class="fa fa-check"></i> Editar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+        </div>
+    </div>

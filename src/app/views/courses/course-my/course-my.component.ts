@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CarouselHolderComponent } from '../../../shared/factories/owncarousel/carouselOption';
+import { Course } from '../../../models/course.model';
+import { EnrollService } from '../../../services/enroll.service';
+import { SecurityService } from '../../../services/security.service';
 
 @Component({
   selector: 'app-course-my',
@@ -8,13 +10,20 @@ import { CarouselHolderComponent } from '../../../shared/factories/owncarousel/c
   styleUrls: ['./course-my.component.scss']
 })
 export class CourseMyComponent implements OnInit {
-  customOption: CarouselHolderComponent = new CarouselHolderComponent();
-  courses = [1,2,3,4,5,6,7,8]
+  loading: Boolean = false;
+  courses: Course[];
 
-  constructor() { }
+  constructor(private enrollService: EnrollService,
+              private securityService: SecurityService) { }
 
-  ngOnInit() {
-    console.log(this.customOption)
+  async ngOnInit() {
+    this.loading = true;
+    const loggedUser = this.securityService.getUser();
+    if(loggedUser){
+      this.courses = await this.enrollService.getCoursesByUser(loggedUser.id);
+      console.log(this.courses)
+    }
+    this.loading = false;
   }
 
 }

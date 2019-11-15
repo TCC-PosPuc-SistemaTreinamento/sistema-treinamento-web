@@ -1,0 +1,47 @@
+@import '../../../../styles';
+
+.title-section { margin: 0; margin-bottom: 0.6em; }
+.d-accordion { cursor: pointer; }
+.d-accordion .panel-heading.collapsed .fa-chevron-up:before { content: '\f078'; }
+.course-content {
+
+    margin-bottom: 35px;
+
+    .course-unit {
+        
+        .course-unit-position {
+            margin-right: 10px;
+            cursor: n-resize;
+        }
+        
+        .fa-times {
+            color: red !important;
+        }
+    
+        .course-unit-content {
+            text-align: center;
+            margin: 20px 0;
+        
+            .course-unit-item {
+                display: inline-block;
+                margin: 10 auto;
+        
+                i {
+                    color: $color-danger;
+                    font-size: 7em;
+                }
+    
+                
+            }
+        }
+    }
+}
+
+.element-add {
+    .btn-circle {
+        border-radius: 50px;
+        float: right;
+        margin: 10px 0;
+        color: #fff;
+    } 
+}

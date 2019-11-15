@@ -9,11 +9,48 @@
 
   <div class="container-fluid" *ngIf="!loading">
       <div class="row">
-          <div class="col centered-title">
+          <div class="col-sm-9 centered-title">
               <h1>Banco de questões</h1>
           </div>
+          <div class="col-sm-3">
+            <button class="btn btn-success float-right" type="button" [routerLink]="['new']">
+                <i class="fa fa-plus"></i> Novo questionário
+            </button>
+        </div>
       </div>
       <hr>    
+      <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Título do quiz</th>
+                    <th>Categoria</th>
+                    <th>Perguntas</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let quiz of quizzes; let i=index">
+                    <td>{{ quiz.title ? quiz.title : '' }}</td>
+                    <td>{{ quiz.category ? quiz.category.name : '' }}</td>
+                    <td>{{ quiz.questions ? quiz.questions.length : 0 }}</td>
+                    <td>
+                      <button class="btn btn-primary" [routerLink]="['edit', quiz._id]">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button (click)="removeQuiz(quiz._id)" class="btn btn-danger">
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
 
 
   </div>

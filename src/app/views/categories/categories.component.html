@@ -1,7 +1,7 @@
 <div class="content-card">
 
     <div class="col centered-title" *ngIf="loading">
-        <h1>Categorias</h1>
+        <h1>Cursos e categorias</h1>
         <div class="row justify-content-center">
             <div class="loader"></div>
         </div>
@@ -10,66 +10,79 @@
     <div class="container-fluid" *ngIf="!loading">
         <div class="row">
             <div class="col centered-title">
-                <h1>Categorias</h1>
+                <h1>Cursos e categorias</h1>
             </div>
         </div>
         <hr>
 
         <div class="row">
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Listagem de categorias</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Categoria</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let categ of categories; let i = index">
-                                    <td>{{ categ.name }}</td>
-                                    <td>
-                                        <button class="btn btn-primary" title="Editar" data-toggle="modal" 
-                                            [attr.data-target]="'#categ-' + i">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="categ-{{ i }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="CategoriaTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="CategoriaTitle">Edição de categoria</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Fechar">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control"
-                                                                [(ngModel)]="categ.name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default"
-                                                            data-dismiss="modal">Fechar</button>
-                                                        <button type="button" class="btn btn-primary"
-                                                            data-dismiss="modal" (click)="edit(categ)">Salvar</button>
-                                                    </div>
+                <div class="row categ_courses-content">
+                    <div class="col-md-6">
+                        <h3>Categorias</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center" 
+                                *ngFor="let categ of categories; let i = index" (click)="changeCategory(categ._id)">
+                                {{ categ.name }}
+                                <button class="btn btn-wcapp" title="Editar" data-toggle="modal" 
+                                    [attr.data-target]="'#categ-' + i">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="categ-{{ i }}" tabindex="-1" role="dialog"
+                                    [attr.aria-labelledby]="'categ-title-' + i" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="categ-title-{{ i }}">Edição de categoria</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Fechar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="categ.name">
                                                 </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Fechar</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-dismiss="modal" (click)="edit(categ)">Salvar</button>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Cursos</h3>
+                        <div *ngIf="courses && courses.length > 0">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center" 
+                                    *ngFor="let course of courses; let i = index">
+                                    <span>{{ course.name }}</span> 
+                                    <button class="btn btn-info" title="Visualizar" [routerLink]="['/courses', course._id]">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-wcapp" title="Editar" [routerLink]="['/courses', 'edit', course._id]">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="courses.length == 0">
+                            <div class="alert alert-info mt-3" role="alert">
+                                Sem cursos para serem apresentados
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-6 mt-3">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newCategory">
                             <i class="fa fa-plus"></i> Nova categoria
                         </button>
@@ -98,10 +111,12 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
+                    <div class="col-sm-6 mt-3">
+                        <button type="button" class="btn btn-success" [routerLink]="['/courses', 'new']">
+                            <i class="fa fa-plus"></i> Novo Curso
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

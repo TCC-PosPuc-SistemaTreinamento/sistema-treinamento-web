@@ -1,0 +1,49 @@
+<div id="modal-quiz" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" (click)="onClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="col-md-12 question" *ngFor="let q of questions; let j = index">
+              <div class="row">
+                <div class="col-md-6">
+                  <h2>{{ q.statement }}</h2>
+                </div>
+                <div class="col-md-6">
+                  <h4>Escolha uma:</h4>
+                  <div class="form-group">
+                    <label><input type="radio" class="form-control" value="1" ngModel name="question-{{ j }}">{{ q.alternativeA }}</label>
+                  </div>
+                  <div class="form-group">
+                    <label><input type="radio" class="form-control" value="2" ngModel name="question-{{ j }}">{{ q.alternativeB }}</label>
+                  </div>
+                  <div class="form-group">
+                    <label><input type="radio" class="form-control" value="3" ngModel name="question-{{ j }}">{{ q.alternativeC }}</label>
+                  </div>
+                  <div class="form-group">
+                    <label><input type="radio" class="form-control" value="4" ngModel name="question-{{ j }}">{{ q.alternativeD }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-warning" aria-label="Fechar" data-dismiss="modal" (click)="onClose()">Cancelar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="submit" class="btn btn-success pull-right">Finalizar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

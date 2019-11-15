@@ -1,0 +1,75 @@
+<div class="modal fade" id="modalQuestion" tabindex="-1" role="dialog"
+  aria-labelledby="QuestionTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="QuestionTitle">Editar pergunta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Enunciado:</label>
+          <div class="col-sm-9">
+            <textarea name="question-statement" rows="2" class="form-control"
+              [(ngModel)]="question.statement"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Alternativa A:</label>
+          <div class="col-sm-9">
+            <input type="text" name="alternativeA" class="form-control" [(ngModel)]="question.alternativeA">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Alternativa B:</label>
+          <div class="col-sm-9">
+            <input type="text" name="alternativeB" class="form-control" [(ngModel)]="question.alternativeB">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Alternativa C:</label>
+          <div class="col-sm-9">
+            <input type="text" name="alternativeC" class="form-control" [(ngModel)]="question.alternativeC">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Alternativa D:</label>
+          <div class="col-sm-9">
+            <input type="text" name="alternativeD" class="form-control" [(ngModel)]="question.alternativeD">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Resposta correta:</label>
+          <div class="col-sm-9">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="alternativeCorrect" value="1"
+                [(ngModel)]="question.alternativeCorrect">
+              <label class="form-check-label">A</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="alternativeCorrect" value="2"
+                [(ngModel)]="question.alternativeCorrect">
+              <label class="form-check-label">B</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="alternativeCorrect" value="3"
+                [(ngModel)]="question.alternativeCorrect">
+              <label class="form-check-label">C</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="alternativeCorrect" value="4"
+                [(ngModel)]="question.alternativeCorrect">
+              <label class="form-check-label">D</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addQuestion()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

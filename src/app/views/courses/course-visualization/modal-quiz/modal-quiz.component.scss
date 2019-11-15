@@ -1,0 +1,13 @@
+.question {
+
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 30px;
+
+    input[type="radio"] {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: middle;
+        margin: 0 10px 0 0;
+    }
+}

@@ -5,9 +5,10 @@ import { Video } from './video.model'
 export class Unit {
     name: String = '';
     position: Number;
-    visible: boolean = true;
-    material: Material = new Material();
-    video: Video = new Video();
-    activity: Activity = new Activity();
+    // material: Material = new Material();
+    material: any;
+    videos: Video[] = [];
+    // activity: Activity = new Activity();
+    activity: String = null;
     
 }

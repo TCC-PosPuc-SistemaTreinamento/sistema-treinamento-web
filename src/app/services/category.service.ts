@@ -21,4 +21,12 @@ export class CategoryService {
     async edit(category: Category) {
         return await this.httpClient.update(this.endPoint, category._id, category);
     }
+
+    async getCoursesByCategory(id: String): Promise<any> {
+        return await this.httpClient.get(`${this.endPoint}/${id}/courses`);
+    }
+
+    async getQuizzesByCategory(id: String): Promise<any> {
+        return await this.httpClient.get(`${this.endPoint}/${id}/quizzes`);
+    }
 }

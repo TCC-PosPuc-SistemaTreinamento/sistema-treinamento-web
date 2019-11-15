@@ -1,0 +1,21 @@
+.question-action {
+    width: 60px !important;
+}
+
+.new-question{
+    vertical-align: middle;
+    font-size: 0.45em;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    color: #28a745 !important;
+}
+
+#modalNewQuestion {
+    .col-form-label, .form-check-inline {
+        font-size: 0.6em !important;
+    }
+
+    .form-check-inline {
+        margin-right: 1.3em !important;
+    }
+}

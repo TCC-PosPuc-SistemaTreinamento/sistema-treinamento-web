@@ -1,0 +1,28 @@
+<div class="modal fade bd-example-modal-xl" id="unit-courses" tabindex="-1" role="dialog"
+  aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" (click)="onClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <iframe src="" #srcIframe frameborder="0" allowfullscreen ></iframe>
+          </div>
+          <div class="col-12 col-md-4">
+            <ul>
+              <li *ngFor="let video of videos; let i = index" class="video-status" [class.video-completed]="video.completed" [class.video-incompleted]="!video.completed">
+                <button class="btn-linkIframe" type="button" title="{{ video.legend }}" (click)="changeVideo(video.url, i)">
+                  <span>{{ video.legend }}</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

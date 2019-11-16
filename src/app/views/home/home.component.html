@@ -1,27 +1,65 @@
 <div class="content-card">
-    
+
   <div class="col centered-title" *ngIf="loading">
-      <h1>Seja bem-vindo</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
+    <h1>Seja bem-vindo</h1>
+    <div class="row justify-content-center">
+      <div class="loader"></div>
+    </div>
   </div>
 
   <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Seja bem-vindo, {{ loggedUser ? loggedUser.name : "" }}</h1>
+    <div class="row">
+      <div class="col centered-title">
+        <h1>Seja bem-vindo, {{ loggedUser ? loggedUser.name : "" }}</h1>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col centered-title">
+        <h2>Busque por categorias</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <ul class="category__list">
+          <li class="category__list__item" (click)="listCoursesByCategory(categ._id)"  *ngFor="let categ of categories">
+            {{ categ.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col centered-title">
+        <h2>Cursos disponíveis </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 d-flex justify-content-start flex-wrap">
+        <a class="course__card" [routerLink]="['/courses', course._id]" *ngFor="let course of courses">
+
+          <div class="course__card__thumb">
+            <img src="{{ course.image ? course.image : '../../../assets/images/certesttestificado1.png' }}" alt="Imagem do curso {{course.name}}" />
           </div>
+          <div class="course__card__details">
+            <h2 class="course__card__details__title">{{course.name}}</h2>
+            <p class="course__card__details__instructor">{{course.instructor}}</p>
+
+            <div class="course__card__details__rating">
+              <span class="fa fa-star checked" aria-hidden="true"></span>
+              <span class="fa fa-star checked" aria-hidden="true"></span>
+              <span class="fa fa-star checked" aria-hidden="true"></span>
+              <span class="fa fa-star" aria-hidden="true"></span>
+              <span class="fa fa-star" aria-hidden="true"></span>
+            </div>
+            <!-- Nota: {{ course.rating }} -->
+
+          </div>
+        </a>
       </div>
-      <hr>    
-      <div *ngFor="let course of courses">
-          <h2>
-              <a [routerLink]="['/courses', course._id]">{{ course.name }}</a>
-          </h2>
-          
-          <button class="btn btn-primary" (click)="register(course._id)">
-              Inscrever
-          </button>
-      </div>
+    </div>
   </div>
 </div>

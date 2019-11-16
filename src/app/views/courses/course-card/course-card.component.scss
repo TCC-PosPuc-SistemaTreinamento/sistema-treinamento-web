@@ -1,8 +1,10 @@
+@import '../../../../styles.scss';
+
 .courseCard {
     max-width: 300px;
     width: 100%;
     border: 1px solid #ccc;
-    box-shadow: 1px 3px 10px #888;
+    box-shadow: 1px 2px 4px rgba($color-dark, .4);
     border-radius: 6px;
     margin: .5rem;
     max-height: 375px;
@@ -20,7 +22,7 @@
 
     &__body {
         padding: 20px 10px;
-        
+
         &__title {
             max-height: 50px;
             min-height: 50px;
@@ -29,7 +31,7 @@
             // text-overflow: ellipsis;
             // -webkit-line-clamp: 2;
             // display: -webkit-box;
-            // -webkit-box-orient: vertical;   
+            // -webkit-box-orient: vertical;
         }
     }
 

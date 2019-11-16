@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Course } from '../../models/course.model';
+import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-course',
@@ -11,10 +13,18 @@ export class CoursesComponent implements OnInit {
   loading: boolean = true;
   courses: Course[];
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor( private route: ActivatedRoute, private categoryService: CategoryService ) { }
+
+  async ngOnInit() {
     this.loading = true;
+
+    const categoryId = this.route.snapshot.queryParams['category'];
+
+    if ( categoryId ) {
+      this.courses = await this.categoryService.getCoursesByCategory(categoryId);
+    }
+
     setTimeout(() => {
       this.loading = false;
     }, 4000);

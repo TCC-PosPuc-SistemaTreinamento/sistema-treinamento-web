@@ -30,10 +30,10 @@ export class CourseService {
         return await this.httpClient.update(this.endPoint, course._id, course);
     }
 
-    // async uploadFiles(files: Set<File>, id): Promise<any>{        
+    // async uploadFiles(files: Set<File>, id): Promise<any>{
     async uploadFiles(f: any, id): Promise<any>{
         const name = f.file[0].name;
-        const fileName = id + '_' + f.unit + '.' + name.split('.')[name.split('.').length-1];        
+        const fileName = id + '_' + f.unit + '.' + name.split('.')[name.split('.').length-1];
         const formData = new FormData();
         formData.append('file', f.file[0], fileName)
         // console.log(formData.get("file"))
@@ -58,5 +58,12 @@ export class CourseService {
 
     async download(name: String){
         return ''
+    }
+
+    async createEvaluate(id: String, evaluate: any) {
+
+      const response = await this.httpClient.post(`${this.endPoint}/${id}/evaluate`, { evaluate });
+      return response;
+
     }
 }

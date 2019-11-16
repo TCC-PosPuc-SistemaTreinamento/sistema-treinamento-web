@@ -1,86 +1,75 @@
 <div class="content-card">
-    
+
   <div class="col centered-title" *ngIf="loading">
-      <h1>Cursos</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
+    <h1>Cursos</h1>
+    <div class="row justify-content-center">
+      <div class="loader"></div>
+    </div>
   </div>
 
   <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Cursos</h1>
-          </div>
+    <div class="row">
+      <div class="col centered-title">
+        <h1>Cursos</h1>
       </div>
-      <hr>
-      
-      <div class="row">
-          <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Nome:</label>
-                            <input type="text" name="name" class="form-control" placeholder="Nome do Usuário" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Categoria:</label>
-                            <input type="text" name="name" class="form-control" placeholder="Nome do Usuário" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button class="btn btn-success" type="button" [routerLink]="['new']">
-                            <i class="fa fa-plus"></i> Novo curso
-                        </button>
-                        <button class="btn btn-primary pull-right" type="button">
-                            <i class="fa fa-search"></i> Pesquisar
-                        </button>
-                    </div>            
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Listagem de cursos</h3>
-                        <table class="table table-responsive table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Categoria</th>
-                                    <th>Instrutor</th>
-                                    <th>Instritos</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let user of users">
-                                    <td> {{ user.name ? user.name : '-' }} </td>
-                                    <td> {{ user.username ? user.username : '-' }} </td>
-                                    <td> {{ user.cpf ? user.cpf : '-' }} </td>
-                                    <td> {{ user.department.name ? user.department.name : '-' }} </td>
-                                    <td>
-                                        <button class="btn btn-info" title="Visualizar">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-wcapp" title="Editar" [routerLink]="['edit', user._id]">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <ui-switch color="#3cb58a" [(ngModel)]="user.isActive" (change)="changeStatus(user)"></ui-switch> 
-                                        {{ user.isActive ? "Ativo" : "Inativo" }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nome:</label>
+              <input type="text" name="name" class="form-control" placeholder="Nome do Usuário" />
+            </div>
           </div>
-      </div>       
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Categoria:</label>
+              <input type="text" name="name" class="form-control" placeholder="Nome do Usuário" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary pull-right" type="button">
+              <i class="fa fa-search"></i> Pesquisar
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Listagem de cursos</h3>
+            <div class="d-flex justify-content-start flex-wrap" *ngIf="courses && courses.length > 0 " >
+              <a class="course__card" [routerLink]="['/courses', course._id]" *ngFor="let course of courses">
+
+                <div class="course__card__thumb">
+                  <img src="{{ course.image ? course.image : '../../../assets/images/certesttestificado1.png' }}" alt="Imagem do curso {{course.name}}" />
+                </div>
+                <div class="course__card__details">
+                  <h2 class="course__card__details__title">{{course.name}}</h2>
+                  <p class="course__card__details__instructor">{{course.instructor}}</p>
+
+                  <div class="course__card__details__rating">
+                    <span class="fa fa-star checked" aria-hidden="true"></span>
+                    <span class="fa fa-star checked" aria-hidden="true"></span>
+                    <span class="fa fa-star checked" aria-hidden="true"></span>
+                    <span class="fa fa-star" aria-hidden="true"></span>
+                    <span class="fa fa-star" aria-hidden="true"></span>
+                  </div>
+                  <!-- Nota: {{ course.rating }} -->
+
+                </div>
+              </a>
+            </div>
+            <div *ngIf="courses.length === 0" class="message-box">
+              Categoria não possui cursos cadastrados!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

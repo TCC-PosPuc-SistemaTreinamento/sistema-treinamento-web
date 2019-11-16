@@ -26,4 +26,12 @@ export class UserService {
         return await this.httpClient.update(this.endPoint, user._id, user);
     }
 
+    async getUserProgress(id: String) {
+        return await this.httpClient.getById(this.endPoint, `${id}/progress`);
+    }
+
+    async getEvaluatesByUser(id: String) {
+        return await this.httpClient.getById(this.endPoint, `${id}/evaluates`);
+    }
+
 }

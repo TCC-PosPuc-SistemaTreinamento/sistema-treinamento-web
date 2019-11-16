@@ -389,6 +389,24 @@ table{
 
 // ---
 
+// Mensagem
+.message-box {
+    margin-top: 15px;
+    margin-bottom: 1rem;
+    font: 1.5rem 'Montserrat';
+    text-transform: uppercase;
+    color: #777;
+    background-color: #eee;
+    border: 1px solid #bbb;
+    padding: 40px;
+    border-radius: 7px;
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+// ---
+
 // Loader
 @keyframes spin {
     0% { transform: rotate(0deg); }

@@ -41,7 +41,7 @@ export class CourseVisualizationComponent implements OnInit {
   async ngOnInit() {
     this.loading = true;
     this.courseId = this.route.snapshot.params['id'];
-    this.course = await this.courseService.getById(this.courseId);
+    this.course = await this.courseService.getByIdFull(this.courseId);
     const loggedUser = this.securityService.getUser();
     if(loggedUser){
       this.userId = loggedUser.id;
@@ -86,6 +86,8 @@ export class CourseVisualizationComponent implements OnInit {
   async getFiles(){
     const response = await this.courseService.getFiles(this.courseId);
     response.subscribe((res: any) => {
+      console.log(res)
+      if(res.err) return;
       if(res && res.length){
         res.forEach(file => {
             this.fileList.push(file)

@@ -15,5 +15,5 @@ export class User {
     privilege: String = 'user'; 
     born: Date;
     sex: number = 0; 
-    picture: String = ''; 
+    // picture: String = ''; 
 }

@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Grade } from '../../../../models/grade.model';
 import { GradeService } from '../../../../services/grade.service';
+import { CourseService } from '../../../../services/course.service';
 declare const swal: any;
 
 @Component({
@@ -21,7 +22,8 @@ export class ModalQuizComponent implements OnInit {
   gradeN = 0;
 
   constructor(private bsModalRef: BsModalRef,
-              private gradeService: GradeService) {}
+              private gradeService: GradeService,
+              private courseService: CourseService) {}
   
   ngOnInit() { }
 
@@ -59,10 +61,16 @@ export class ModalQuizComponent implements OnInit {
     this.grade.grade = this.gradeN / this.questions.length * 100;
 
     let response = await this.gradeService.create(this.grade);
-    if(response._id)
+    if(response._id){
       swal('Parabéns!', 'Suas respostas foram enviadas com sucesso', 'success');
-    else
+      const courseComplete = await this.courseService.verifyConclusion(this.course, this.user);
+      console.log(courseComplete)
+      if(courseComplete._id) {
+        swal('Parabéns!', `Você concluiu o curso com sucesso e obteve o certificado do curso. Visite a página de certificados para fazer o download`, 'success');
+      }
+    } else{
       swal('Erro!', 'Erro ao gravar as respostas do quiz', 'error');
+    }
     this.bsModalRef.hide();
   }
 

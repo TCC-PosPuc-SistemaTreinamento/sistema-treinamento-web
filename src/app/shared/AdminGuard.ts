@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
 import { SecurityService } from '../services/security.service'; 
+declare const swal: any;
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
     constructor(private router: Router,
                 private securityService: SecurityService){}
 
     canActivate() {
-        if(this.securityService.isLoggedIn()){
+        const user = this.securityService.getUser(); 
+        if(user.privilege == 'admin')
             return true;
-        } else {
-            this.router.navigate(['/login'])
+        else{
+            swal("Você não tem permissão para acessar esta página", "", "error");
+            this.router.navigate(['/home']);
             return false;
         }
     }

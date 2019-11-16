@@ -94,7 +94,7 @@
                                     <td> {{ user.cpf ? user.cpf : '-' }} </td>
                                     <td> {{ user.department.name ? user.department.name : '-' }} </td>
                                     <td>
-                                        <button class="btn btn-info" title="Visualizar">
+                                        <button class="btn btn-info" title="Visualizar" [routerLink]="[user._id]">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </td>

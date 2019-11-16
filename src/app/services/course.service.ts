@@ -21,6 +21,11 @@ export class CourseService {
         let response = await this.httpClient.getById(this.endPoint, id);
         return response;
     }
+    
+    async getByIdFull(id: String): Promise<Course> {
+        let response = await this.httpClient.getById(`${this.endPoint}`, `${id}/full`);
+        return response;
+    }
 
     async create(course: Course): Promise<any> {
         return await this.httpClient.post(this.endPoint, course);
@@ -44,6 +49,11 @@ export class CourseService {
         return true;
     }
 
+    async verifyConclusion(id: String, user): Promise<any>{
+        let response = this.httpClient.post(`${this.endPoint}/${id}/conclusion`, { user } );
+        return response;
+    }
+
     async getFiles(id: String): Promise<any>{
         let response = this.upload.get(`${this.endPoint}/${id}/upload`)
         return response;
@@ -53,6 +63,11 @@ export class CourseService {
         let response = this.upload.get(`${this.endPoint}/files/${filename}`);
         return response;
     }
+
+    // async getCapa(id: String): Promise<Observable<Object>>{
+    //     let response = this.upload.get(`${this.endPoint}/${id}/capa`);
+    //     return response;
+    // }
 
     async deleteFile(name: String){}
 

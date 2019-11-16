@@ -14,7 +14,6 @@ export class SideBarComponent implements OnInit {
   private menuToggled: boolean = false;
   public loggedUser: any;
   private selectedPage;
-
   public homeAccess = false;
   public dashboardAccess = false;
   public myCoursesAccess = false;
@@ -27,21 +26,15 @@ export class SideBarComponent implements OnInit {
   public departmentsAccess = false;
   public rolesAccess = false;
 
-  public superAdmin = false;
-  public isAdministrator = false;
-
   constructor(private router: Router,
               private securityService: SecurityService) { }
 
   ngOnInit() {
     this.router.events.subscribe(() => {
       if(!this.securityService.getUser()){
-        console.log('nao tem locals')
         return this.loggedUser = null;
       }
       if (!this.loggedUser) {
-        console.log('nao tem user')
-        console.log(this.loggedUser)
         return this.getUser();
       }
       this.getPermissions();
@@ -53,23 +46,28 @@ export class SideBarComponent implements OnInit {
     if(this.loggedUser) {
       this.loggedUser.name = this.loggedUser.name.split(" ")[0];
     }
-    console.log('agora tem')
-    console.log(this.loggedUser)
   }
 
   private getPermissions(){
-    this.homeAccess = true;
-    this.dashboardAccess = true;
-    this.myCoursesAccess = true;
-    this.conquestsAccess = true;
-    this.certificatesAccess = true;
-    this.questionsAccess = true;
-    this.suggestionsAccess = true;
-    this.usersAccess = true;
-    this.categoriesAccess = true;
-    this.departmentsAccess = true;
-    this.rolesAccess = true;
-    this.isAdministrator = true;
+    if(this.loggedUser.privilege == 'admin'){
+      this.homeAccess = true;
+      this.myCoursesAccess = true;
+      this.conquestsAccess = true;
+      this.certificatesAccess = true;
+      this.suggestionsAccess = true;
+      this.dashboardAccess = true;
+      this.questionsAccess = true;
+      this.usersAccess = true;
+      this.categoriesAccess = true;
+      this.departmentsAccess = true;
+      this.rolesAccess = true;
+    } else {
+      this.homeAccess = true;
+      this.myCoursesAccess = true;
+      this.conquestsAccess = true;
+      this.certificatesAccess = true;
+      this.suggestionsAccess = true;
+    }
   }
 
   private logOut() {

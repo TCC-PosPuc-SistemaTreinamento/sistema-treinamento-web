@@ -1,20 +1,158 @@
 <div class="content-card">
-    
-  <div class="col centered-title" *ngIf="loading">
-      <h1>Usuário</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
-  </div>
 
-  <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Usuário</h1>
-          </div>
-      </div>
-      <hr>    
+    <div class="col centered-title" *ngIf="loading">
+        <h1>Usuário</h1>
+        <div class="row justify-content-center">
+            <div class="loader"></div>
+        </div>
+    </div>
 
+    <div class="container-fluid" *ngIf="!loading">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="profile">
+                    <div class="profile-wrapper">
+                        <div class="row">
+                            <div class="col-md-4 profile-infos">
+                                <div class="profile-infos-wrapper">
+                                    <span class="avatar">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <h3 class="profile-infos-name">
+                                        {{ user?.name }}
+                                    </h3>
+                                    <div class="profile-infos-txt">
+                                        <p>
+                                            <strong>Data de nascimento:</strong> {{ user?.born | date:'dd/MM/yyyy' }}
+                                        </p>
+                                        <p>
+                                            <strong>E-mail:</strong> {{ user?.username }}
+                                        </p>
+                                        <p>
+                                            <strong>Departamento: </strong> {{ user?.department?.name }}
+                                        </p>
+                                        <p>
+                                            <strong>Cargo: </strong> {{ user?.role?.name }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
 
-  </div>
+                                <div class="profile-certificates">
+                                    <h2 class="profile-title">Certificados</h2>
+                                    <div *ngIf="certificates && certificates.length > 0">
+                                        <div class="profile-certificates-list">
+                                            <div class="profile-certificates-item" *ngFor="let c of certificates">
+                                                <div class="profile-certificates-item-image">
+                                                    <img src="../../../../assets/images/certificado1.png" alt="certificado">
+                                                </div>
+                                                <div class="profile-certificates-item-content">
+                                                    <div class="profile-certificates-item-content-title">
+                                                        <h3>{{ c.course ? c.course.name : '' }}</h3>
+                                                        <span>{{ c.completedDate | date:'dd/MM/yyyy' }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-box" *ngIf="certificates.length == 0">
+                                        Este empregado não possui certificados no momento.
+                                    </div>
+                                </div>
+
+                                <div class="profile-activities">
+                                    <h2 class="profile-title">Relatório de progresso</h2>
+                                    <div class="profile-courses-list">
+                                        <div class="col-md-12" *ngFor="let up of userProgress; let i = index">
+                                            <div class="profile-courses-item col-md-12" data-toggle="modal" [attr.data-target]="'#course-item-' + i">
+                                                {{ up.course ? up.course.name : '' }}
+                                            </div>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="course-item-{{ i }}" tabindex="-1" role="dialog"
+                                                [attr.aria-labelledby]="'CourseItem-' + i" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document" style="max-height: 90vh !important; overflow-y: auto;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title display-4" id="CourseItem-{{ i }}">{{ up.course ? up.course.name : '' }}</h2>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="courses-item-videos">
+                                                                <h2>Vídeos assistidos</h2>
+                                                                <div *ngFor="let w of up.watched">
+                                                                    <h4>Unidade: {{ w.unit }}</h4>
+                                                                    <span *ngFor="let wv of w.watchedVideos">{{ wv + 1 }}º Vídeo, </span>
+                                                                    <hr>
+                                                                </div>
+                                                            </div>
+                                                            <div class="courses-item-grades">
+                                                                <h2>Notas das atividades</h2>
+                                                                <div *ngFor="let g of up.grades">
+                                                                    <h4>Unidade: {{ g.unit }}</h4>
+                                                                    <p>Nota: {{ g.grade | number:'1.0-2'}}%</p>
+                                                                    <p>Respotas:</p>
+                                                                    <div *ngIf="g.answers">
+                                                                        <table class="table">
+                                                                            <tr><th>Enunciado</th><th>Resposta Usuário</th><th>Resposta correta</th><th></th></tr>
+                                                                            <tr *ngFor="let answer of g.answers">
+                                                                                <td>{{ answer.statement }}</td>
+                                                                                <td>{{ answer.answerUser }}</td>
+                                                                                <td>{{ answer.answerCorrect }}</td>
+                                                                                <td>
+                                                                                    <i class="fa fa-check" *ngIf="answer.correct" style="color: green;"></i>
+                                                                                    <i class="fa fa-times" *ngIf="!answer.correct" style="color: red;"></i>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="message-box" *ngIf="!g.answers">
+                                                                        Empregado não respondeu nenhum questionário neste unidade
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">Fechar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-evaluate">
+                                    <h2 class="profile-title">Relatório da Pesquisa de Curso</h2>
+                                    <div *ngIf="evaluates && evaluates.length > 0">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr class="table-light">
+                                                    <th>Curso</th>
+                                                    <th>Nota</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let evaluate of evaluates">
+                                                    <td>{{ evaluate?.name }}</td>
+                                                    <td>{{ evaluate?.evaluates?.rating }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="message-box" *ngIf="evaluates.length == 0">
+                                        Este empregado não avaliou nenhum curso.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 </div>

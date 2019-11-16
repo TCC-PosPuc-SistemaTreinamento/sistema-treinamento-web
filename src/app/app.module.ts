@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -9,9 +9,11 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import { OwlModule } from 'ngx-owl-carousel';
 import { TagInputModule } from 'ngx-chips';
 import { ModalModule } from 'ngx-bootstrap/modal';
+// import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutes } from './app.routing';
 import { AuthGuard } from './shared/AuthGuard';
+import { AdminGuard } from './shared/AdminGuard';
 import { HttpClient } from './shared/wrappers/HttpClient';
 import { Upload } from './shared/wrappers/Upload';
 import { LocalStorage } from './shared/wrappers/LocalStorage';
@@ -110,10 +112,12 @@ import { MaterialComponent } from './views/courses/course-visualization/material
     NgDatepickerModule,
     TagInputModule,
     OwlModule,
+    // ChartsModule,
     ModalModule.forRoot()
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     HttpClient,
     Upload,
     LocalStorage,
@@ -128,8 +132,7 @@ import { MaterialComponent } from './views/courses/course-visualization/material
     UserService,
     CourseService,
     RoleService,
-    DepartmentService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    DepartmentService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -9,8 +9,8 @@
         <i class="fa fa-bars"></i>
     </button>
     <div class="navbar-brand">
-        <!-- <img class="w" src="../../assets/images/logo-w.png" alt="">
-        <img class="h" src="../../assets/images/logo-admin-text.png" alt=""> -->
+        <img class="w" src="../../../assets/images/logo.png" alt="">
+        <img class="h" src="../../../assets/images/logo_name.png" alt="">
     </div>
 
     <div class="sidemenu" id="sidemenu">
@@ -20,43 +20,42 @@
             <label>{{ loggedUser ? loggedUser.name : "" }}</label>
         </div>
 
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/home']"
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/home']" routerLinkActive="focused"
             *ngIf="homeAccess == true">
-            <i class="fa fa-home"></i>
-            <label>Home</label>
+            <i class="fa fa-home"></i> <label>Home</label>
         </div>
 
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/dashboard']" 
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/dashboard']" routerLinkActive="focused" 
             *ngIf="dashboardAccess == true">
             <i class="fa fa-line-chart"></i>
             <label>Dashboard</label>
         </div>
 
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/courses/my']" 
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/courses/my']" routerLinkActive="focused" 
             *ngIf='myCoursesAccess == true'>
             <i class="fas fa-laptop-code"></i>
             <label>Meus cursos</label>
         </div>
 
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/conquests']"
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/conquests']" routerLinkActive="focused"
             *ngIf="conquestsAccess == true">
             <i class="fa fa-trophy"></i>
             <label>Conquistas</label>
         </div>
 
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/certificates']"
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/certificates']" routerLinkActive="focused"
             *ngIf="certificatesAccess == true">
             <i class="fa fa-graduation-cap"></i>
             <label>Certificado</label>
         </div>
         
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/questions']"
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/questions']" routerLinkActive="focused"
             *ngIf="questionsAccess == true">
             <i class="fa fa-check-circle"></i>
             <label>Questões</label>
         </div>
         
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/suggestions']"
+        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/suggestions']" routerLinkActive="focused"
             *ngIf="suggestionsAccess == true">
             <i class="fa fa-commenting-o"></i>
             <label>Sugestões</label>
@@ -71,25 +70,25 @@
         </a>
 
         <div class="collapse" id="management-mobile">
-            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/users']"
+            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/users']" routerLinkActive="focused"
                 *ngIf='userAccess == true'>
                 <i class="fa fa-users"></i>
                 <label>Usuários</label>
             </div>
             
-            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/categories']"
+            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/categories']" routerLinkActive="focused"
                 *ngIf='categoriesAccess == true'>
                 <i class="fa fa-list"></i>
                 <label>Cursos/Categorias</label>
             </div>
 
-            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/departments']" 
+            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/departments']" routerLinkActive="focused" 
                 *ngIf='departmentsAccess == true'>
                 <i class="fa fa-briefcase"></i>
                 <label>Departamentos</label>
             </div>
 
-            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/roles']"
+            <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/roles']" routerLinkActive="focused"
                 *ngIf='rolesAccess == true'>
                 <i class="fa fa-address-card-o"></i>
                 <label>Cargos</label>
@@ -108,8 +107,8 @@
 <div id="sidebar">
 
     <div class="menu-logo">
-        <!-- <img class="w" src="../../assets/images/logo-w.png" alt="">
-        <img class="h" src="../../assets/images/logo-admin-text.png" alt=""> -->
+        <img class="w" src="../../../assets/images/logo.png" alt="">
+        <img class="h" src="../../../assets/images/logo_name.png" alt="">
     </div>
 
     <div class="sidebar-item-wrappers">
@@ -132,49 +131,49 @@
             </div>
         </div>
 
-        <div class="menu-item item-border" [routerLink]="['/home']" 
+        <div class="menu-item item-border" [routerLink]="['/home']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'Home'}">
             <div class="icon">
                 <i class="fa fa-home"></i>
             </div>
             <label>Home</label>
         </div>
-        <div class="menu-item" [routerLink]="['/dashboard']" 
-            [ngClass]="{'focused': selectedPage == 'Dashboard'}">
+        <div class="menu-item" [routerLink]="['/dashboard']" routerLinkActive="focused" 
+            [ngClass]="{'focused': selectedPage == 'Dashboard'}" *ngIf='dashboardAccess == true'>
             <div class="icon">
                 <i class="fa fa-line-chart"></i>
             </div>
             <label>Dashboard</label>
         </div>
-        <div class="menu-item" [routerLink]="['/courses/my']" 
+        <div class="menu-item" [routerLink]="['/courses/my']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'MeusCursos'}" *ngIf='myCoursesAccess == true'>
             <div class="icon">
                 <i class="fas fa-laptop-code"></i>
             </div>
             <label>Meus cursos</label>
         </div>
-        <div class="menu-item" [routerLink]="['/conquests']" 
+        <div class="menu-item" [routerLink]="['/conquests']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'Conquistas'}" *ngIf='conquestsAccess == true'>
             <div class="icon">
                 <i class="fa fa-trophy"></i>
             </div>
             <label>Conquistas</label>
         </div>
-        <div class="menu-item" [routerLink]="['/certificates']" 
+        <div class="menu-item" [routerLink]="['/certificates']" routerLinkActive="focused"
             [ngClass]="{'focused': selectedPage == 'Certificados'}" *ngIf='certificatesAccess == true'>
             <div class="icon">
                 <i class="fa fa-graduation-cap"></i>
             </div>
             <label>Certificado</label>
         </div>
-        <div class="menu-item" [routerLink]="['/questions']" 
+        <div class="menu-item" [routerLink]="['/questions']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'Questões'}" *ngIf="questionsAccess == true">
             <div class="icon">
                 <i class="fa fa-check-circle"></i>
             </div>
             <label>Questões</label>
         </div>
-        <div class="menu-item" [routerLink]="['/suggestions']" 
+        <div class="menu-item" [routerLink]="['/suggestions']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'Sugestões'}" *ngIf='suggestionsAccess == true'>
             <div class="icon">
                 <i class="fa fa-commenting-o"></i>
@@ -182,7 +181,7 @@
             <label>Sugestões</label>
         </div>
         <a href="#management-full" data-toggle="collapse" class="menu-item menu-item-has-items"
-            [ngClass]="{'focused': selectedPage == 'Usuários' || selectedPage == 'Categorias' || selectedPage == 'Departamentos' || selectedPage == 'Cargos' || selectedPage == 'Permissões' }"
+            [ngClass]="{'focused': selectedPage == 'Usuários' || selectedPage == 'Categorias' || selectedPage == 'Departamentos' || selectedPage == 'Cargos' }"
             *ngIf="departmentsAccess == true || rolesAccess == true || userAccess == true || categoriesAccess == true">
             <div class="icon">
                 <i class="fa fa-cogs"></i>
@@ -192,28 +191,28 @@
             </label>
         </a>
         <div class="collapse" id="management-full">
-            <div class="menu-item sub-item" [routerLink]="['/users']" 
+            <div class="menu-item sub-item" [routerLink]="['/users']" routerLinkActive="focused" 
                 [ngClass]="{'focused': selectedPage == 'Usuários'}" *ngIf='usersAccess == true'>
                 <div class="icon">
                     <i class="fa fa-users"></i>
                 </div>
                 <label>Usuários</label>
             </div>
-            <div class="menu-item sub-item" [routerLink]="['/categories']" 
+            <div class="menu-item sub-item" [routerLink]="['/categories']" routerLinkActive="focused" 
                 [ngClass]="{'focused': selectedPage == 'Categorias'}" *ngIf='categoriesAccess == true'>
                 <div class="icon">
                     <i class="fa fa-list"></i>
                 </div>
                 <label>Cursos/Categorias</label>
             </div>
-            <div class="menu-item sub-item" [routerLink]="['/departments']" 
+            <div class="menu-item sub-item" [routerLink]="['/departments']" routerLinkActive="focused" 
                 [ngClass]="{'focused': selectedPage == 'Departamentos'}" *ngIf='departmentsAccess == true'>
                 <div class="icon">
                     <i class="fa fa-briefcase"></i>
                 </div>
                 <label>Departamentos</label>
             </div>
-            <div class="menu-item sub-item" [routerLink]="['/roles']" 
+            <div class="menu-item sub-item" [routerLink]="['/roles']" routerLinkActive="focused" 
                 [ngClass]="{'focused': selectedPage == 'Cargos'}" *ngIf='rolesAccess == true'>
                 <div class="icon">
                     <i class="fa fa-address-card-o"></i>

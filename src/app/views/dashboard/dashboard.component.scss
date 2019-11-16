@@ -1,0 +1,55 @@
+@import '../../../styles.scss';
+
+//Block
+.dashboard-block{
+    border-radius: 5px;
+    box-shadow: 0 0 10px -10px #ccc;
+    color: #fff;
+    height: 120px;
+    margin: 10px 0;
+    padding: 10px;
+
+    i{
+        color: #000;
+        font-size: 50px;
+        opacity: .3;
+    }
+
+    @media(max-width: $md-width){
+        height: initial;
+        text-align: center;
+    }
+
+    .row {
+
+        align-items: center;
+        .col-md-4{
+            padding-left: 8px !important;
+            padding-right: 0 !important;
+        }
+        .col-md-8{
+            padding-left: 10px !important;
+            padding-right: 5px !important;
+        }
+    }
+}
+
+// Content
+.dashboard-number{
+    display: block;
+    font-size: 40px;
+    font-weight: bold;
+
+    @media(max-width: $md-width){
+        margin-top: 10px;
+    }
+}
+
+
+.dashboard-text{
+    display: block;
+    font-size: 16px;
+    line-height: 16px;
+    margin-top: 4px;
+    text-transform: uppercase;
+}

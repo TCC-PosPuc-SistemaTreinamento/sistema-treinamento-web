@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
 import { AuthGuard } from './shared/AuthGuard';
+import { AdminGuard } from './shared/AdminGuard';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { RecoveryPasswordComponent } from './views/recovery-password/recovery-password.component';
@@ -46,6 +47,7 @@ export const AppRoutes: Routes = [
     {
         path: "home",
         component: HomeComponent,
+        canActivate: [AuthGuard],
         pathMatch: "full"
     },
     {
@@ -54,7 +56,7 @@ export const AppRoutes: Routes = [
             {
                 path: "new",
                 component: CourseCreateComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
@@ -72,7 +74,7 @@ export const AppRoutes: Routes = [
             {
                 path: "edit/:id",
                 component: CourseEditComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
@@ -98,16 +100,19 @@ export const AppRoutes: Routes = [
     {
         path: "dashboard",
         component: DashboardComponent,
+        canActivate: [AuthGuard, AdminGuard],
         pathMatch: "full"
     },
     {
         path: "conquests",
         component: ConquestsComponent,
+        canActivate: [AuthGuard],
         pathMatch: "full"
     },
     {
         path: "certificates",
         component: CertificatesComponent,
+        canActivate: [AuthGuard],
         pathMatch: "full"
     },
     {
@@ -116,19 +121,19 @@ export const AppRoutes: Routes = [
             {
                 path: "new",
                 component: QuestionCreateComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
                 path: "edit/:id",
                 component: QuestionEditComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
                 path: "",
                 component: QuestionsComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             }
         ]
@@ -136,6 +141,7 @@ export const AppRoutes: Routes = [
     {
         path: "suggestions",
         component: SuggestionsComponent,
+        canActivate: [AuthGuard],
         pathMatch: "full"
     },
     {
@@ -144,25 +150,25 @@ export const AppRoutes: Routes = [
             {
                 path: "new",
                 component: UserCreateComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
                 path: "edit/:id",
                 component: UserEditComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
                 path: "",
                 component: UsersComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             },
             {
                 path: ":id",
                 component: UserDetailComponent,
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard, AdminGuard],
                 pathMatch: "full"
             }
         ]
@@ -170,18 +176,19 @@ export const AppRoutes: Routes = [
     {
         path: "categories",
         component: CategoriesComponent,
+        canActivate: [AuthGuard, AdminGuard],
         pathMatch: "full"
     },
     {
         path: "departments",
         component: DepartmentsComponent,
+        canActivate: [AuthGuard, AdminGuard],
         pathMatch: "full"
     },
     {
         path: "roles",
         component: RolesComponent,
+        canActivate: [AuthGuard, AdminGuard],
         pathMatch: "full"
     }
 ];
-
-// export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

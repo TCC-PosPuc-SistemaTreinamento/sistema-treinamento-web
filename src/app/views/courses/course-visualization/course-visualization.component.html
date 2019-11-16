@@ -33,7 +33,7 @@
                             </h3>
                         </header>
                         <footer class="course-item-footer">
-                            <a href="{{ unit.material && unit.material.contentType == 'application/pdf' ? ('/courses/material/' + unit.material.filename) : (urlCourseFile + '/' + unit.material.filename) }}" class="footer-link" target="_blank" [class.is-disabled]="unit.material == undefined">
+                            <a href="{{ unit.material && unit.material.contentType == 'application/pdf' ? ('/courses/material/' + unit.material.filename) : unit.material ? (urlCourseFile + '/' + unit.material.filename) : '' }}" class="footer-link" target="_blank" [class.is-disabled]="unit.material == undefined">
                                 <i class="fa fa-file-text-o"></i>
                             </a>
                             <a href="javascript:void(0)" class="footer-link" [class.is-disabled]="unit.videos.length == 0" data-toggle="modal" data-target="#unit-courses" (click)="openModalVideo(unit.videos, unit.position)">

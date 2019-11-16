@@ -3,6 +3,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Watch } from '../../../../models/watch.model';
 import { WatchService } from '../../../../services/watch.service';
+import { CourseService } from '../../../../services/course.service';
+declare const swal: any;
 
 @Component({
   selector: 'app-unit-video',
@@ -21,7 +23,8 @@ export class UnitVideoComponent implements OnInit {
   watch: Watch = new Watch();
 
   constructor(private bsModalRef: BsModalRef,
-    private watchService: WatchService) { }
+              private watchService: WatchService,
+              private courseService: CourseService) { }
 
   async ngOnInit() {
     if (this.videos && this.videos.length > 0) {
@@ -59,8 +62,16 @@ export class UnitVideoComponent implements OnInit {
   async videoCompleted(i){
     this.watch.watchedVideos.push(i);
     let res = await this.watchService.create(this.watch);
-    if(res._id)
+    console.log(res)
+    if(res._id){
       this.videos[i].completed = true;
+
+      const courseComplete = await this.courseService.verifyConclusion(this.course, this.user);
+      console.log(courseComplete)
+      if(courseComplete._id) {
+        swal('Parabéns!', `Você concluiu o curso com sucesso e obteve o certificado do curso. Visite a página de certificados para fazer o download`, 'success');
+      }
+    }
   }
 
 

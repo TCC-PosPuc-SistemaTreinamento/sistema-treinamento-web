@@ -36,11 +36,12 @@ export class CourseEditComponent implements OnInit {
     this.loading = true;
     const id = this.route.snapshot.params['id'];
     this.categories = await this.categoryService.getAll();
-    this.course = await this.courseService.getById(id);
+    this.course = await this.courseService.getByIdFull(id);
     console.log(this.course)
     await this.changeQuizCategory();
 
     await this.getFiles();
+    
     console.log(this.fileList)
     if(this.fileList && this.fileList.length > 0){
       this.download(this.fileList[0].Key);
@@ -120,10 +121,12 @@ export class CourseEditComponent implements OnInit {
     console.log('get file')
     const response = await this.courseService.getFiles(this.course._id);
     response.subscribe((res: any) => {
-      res.forEach(file => {
-          this.fileList.push(file)
-      });
-      // return this.fileList
+      if(res.err) return;
+      if(res && res.length > 0){
+        res.forEach(file => {
+            this.fileList.push(file)
+        });
+      }
     })
     console.log('files los', this.fileList)
   }

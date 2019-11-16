@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
 
     this.courses = await this.courseService.getAll();
     this.categories = await this.categoryService.getAll();
+
+    this.courses = this.courses.filter(course => course.visible)
     this.loading = false;
   }
 

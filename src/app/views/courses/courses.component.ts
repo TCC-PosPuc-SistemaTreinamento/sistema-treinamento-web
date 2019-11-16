@@ -23,11 +23,9 @@ export class CoursesComponent implements OnInit {
 
     if ( categoryId ) {
       this.courses = await this.categoryService.getCoursesByCategory(categoryId);
+      this.courses = this.courses.filter(course => course.visible);
     }
 
-    setTimeout(() => {
-      this.loading = false;
-    }, 4000);
     this.loading = false;
   }
 

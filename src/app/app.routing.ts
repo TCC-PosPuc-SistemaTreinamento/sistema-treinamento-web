@@ -26,17 +26,23 @@ import { CategoriesComponent } from "./views/categories/categories.component";
 import { DepartmentsComponent } from "./views/departments/departments.component";
 import { RolesComponent } from "./views/roles/roles.component";
 import { MaterialComponent } from './views/courses/course-visualization/material/material.component';
-
+import { ChangePasswordComponent } from './views/change-password/change-password.component';
 
 export const AppRoutes: Routes = [
     {
         path: "",
         redirectTo: "/login",
-        pathMatch: "full" 
+        pathMatch: "full"
     },
     {
         path: "login",
         component: LoginComponent
+    },
+    {
+      path: "change-password",
+      component: ChangePasswordComponent,
+      canActivate: [AuthGuard],
+      pathMatch: "full"
     },
     {
         path: "password/forgot",

@@ -16,11 +16,11 @@
     <hr>
 
     <div class="row">
-      <div class="col-md-12 d-flex flex-wrap" *ngIf="courses && courses.length > 0">
-        <div *ngFor="let c of courses">
+      <div class="col-md-12 d-flex flex-wrap" *ngIf="myCourses && myCourses.length > 0">
+        <div *ngFor="let c of myCourses">
           <app-course-card [course]="c.course"></app-course-card>
         </div>
-        <div *ngIf="courses.length == 0" class="col-sm-12">
+        <div *ngIf="myCourses.length == 0" class="col-sm-12">
           <p class="course-empty">Você não está matriculado em nenhum curso no momento.</p>
         </div>
       </div>

@@ -28,26 +28,17 @@ export class CertificatesComponent implements OnInit {
     this.loading = false;
   }
 
-  certificateTemplate() {
-    const markup = `
-    <div class="d-none" id="teste">
-      <h1>Certifcado</h1>
-      <p> Certificamos para os devidos fins que {{ fulano }} conclui com sucesso o curso de {{atdtast}}, no dia {{tal}}. </p>
-    </div>
-    `;
 
-    document.querySelector('.certificate').append(markup);
-  }
+  generatePDF(i, courseName){
 
-  teste(){
     // parentdiv is the html element which has to be converted to PDF
-    html2canvas(document.querySelector("#teste")).then(canvas => {
+    html2canvas(document.querySelector(`#certificateTemplate-${i}`)).then(canvas => {
 
-      var pdf = new jsPDF('p', 'pt', [canvas.width, canvas.height]);
+      var pdf = new jsPDF( 'l', 'px', [ parseInt(canvas.style.width, 10) + 170, parseInt(canvas.style.height, 10) + 170 ]);
 
       var imgData  = canvas.toDataURL("image/jpeg", 1.0);
-      pdf.addImage(imgData,0,0,canvas.width, canvas.height);
-      pdf.save('converteddoc.pdf');
+      pdf.addImage(imgData, 0, 0, parseInt(canvas.style.width, 10), parseInt(canvas.style.height, 10) );
+      pdf.save(`certificado-${courseName}.pdf`);
 
     });
   }

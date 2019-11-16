@@ -21,9 +21,13 @@ export class UserService {
     async create(user: User): Promise<any> {
         return await this.httpClient.post(this.endPoint, user);
     }
-    
+
     async edit(user: User) {
         return await this.httpClient.update(this.endPoint, user._id, user);
+    }
+
+    async changePassword(oldPassword: String, newPassword, userId: String): Promise<any> {
+      return await this.httpClient.post(`${this.endPoint}/change-password`, { oldPassword, newPassword, userId })
     }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Course } from '../../../models/course.model';
 import { EnrollService } from '../../../services/enroll.service';
 import { SecurityService } from '../../../services/security.service';
 
@@ -11,18 +10,21 @@ import { SecurityService } from '../../../services/security.service';
 })
 export class CourseMyComponent implements OnInit {
   loading: Boolean = false;
-  courses: Course[];
+  myCourses: any[];
 
-  constructor(private enrollService: EnrollService,
-              private securityService: SecurityService) { }
+  constructor(
+    private enrollService: EnrollService,
+    private securityService: SecurityService,
+  ) { }
 
   async ngOnInit() {
     this.loading = true;
     const loggedUser = this.securityService.getUser();
     if(loggedUser){
-      this.courses = await this.enrollService.getCoursesByUser(loggedUser.id);
-      console.log(this.courses)
+      this.myCourses = await this.enrollService.getCoursesByUser(loggedUser.id);
+      this.myCourses = this.myCourses.filter(({course}) => course.visible);
     }
+
     this.loading = false;
   }
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -61,6 +61,7 @@ import { QuestionFormComponent } from './views/questions/question-form/question-
 import { ModalEvaluationComponent } from './views/courses/course-visualization/modal-evaluation/modal-evaluation.component';
 import { ModalQuizComponent } from './views/courses/course-visualization/modal-quiz/modal-quiz.component';
 import { MaterialComponent } from './views/courses/course-visualization/material/material.component';
+import { ChangePasswordComponent } from './views/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { MaterialComponent } from './views/courses/course-visualization/material
     QuestionFormComponent,
     ModalEvaluationComponent,
     ModalQuizComponent,
-    MaterialComponent
+    MaterialComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +131,6 @@ import { MaterialComponent } from './views/courses/course-visualization/material
     CourseService,
     RoleService,
     DepartmentService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
   bootstrap: [AppComponent],
   entryComponents: [

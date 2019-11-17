@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: process.env.ANGULAR_APP_API_URL,
+  apiBaseUrl: 'https://fc-training.herokuapp.com/api',
   frontBaseUrl: 'http:localhost:4200'
 };

@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { OwlModule } from 'ngx-owl-carousel';
-import { TagInputModule } from 'ngx-chips';
+// import { TagInputModule } from 'ngx-chips';
 import { ModalModule } from 'ngx-bootstrap/modal';
 // import { ChartsModule } from 'ng2-charts';
 
@@ -113,10 +113,10 @@ import { ChangePasswordComponent } from './views/change-password/change-password
     FactoryModule,
     UiSwitchModule,
     NgDatepickerModule,
-    TagInputModule,
     OwlModule,
     // ChartsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    // TagInputModule
   ],
   providers: [
     AuthGuard,

@@ -5,7 +5,7 @@ export class Course {
     name: String = "";
     description: String = "";
     category: String = "";
-    keyWords: String[] = new Array<String>();
+    keyWords: String = '';
     visible: boolean = true;
     image: String = '';
     instructor: String = '';

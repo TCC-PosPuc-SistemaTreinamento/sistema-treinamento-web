@@ -21,6 +21,7 @@ export class QuestionsComponent implements OnInit {
   //   ]
   // }]
   quizzes: Quiz[];
+  loading: Boolean = false;
 
   constructor(private quizService: QuizService,
               private router: Router) { }

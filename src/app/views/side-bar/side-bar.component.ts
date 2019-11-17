@@ -13,7 +13,7 @@ import { getDefaultService } from "selenium-webdriver/edge";
 export class SideBarComponent implements OnInit {
   private menuToggled: boolean = false;
   public loggedUser: any;
-  private selectedPage;
+  public selectedPage;
   public homeAccess = false;
   public dashboardAccess = false;
   public myCoursesAccess = false;
@@ -70,12 +70,12 @@ export class SideBarComponent implements OnInit {
     }
   }
 
-  private logOut() {
+  public logOut() {
     this.securityService.clear();
     this.router.navigate(["/login"]);
   }
 
-  private toggleMenu() {
+  public toggleMenu() {
     let menu = document.getElementById("sidemenu");
     let overlay = document.getElementById("overlay");
     if (!this.menuToggled) {

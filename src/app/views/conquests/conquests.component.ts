@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./conquests.component.scss']
 })
 export class ConquestsComponent implements OnInit {
+  loading: Boolean = false;
 
   constructor() { }
 

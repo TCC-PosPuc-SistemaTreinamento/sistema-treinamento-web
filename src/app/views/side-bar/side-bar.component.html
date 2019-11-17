@@ -71,7 +71,7 @@
 
         <div class="collapse" id="management-mobile">
             <div (click)="toggleMenu()" class="nav-btn sub-item" [routerLink]="['/users']" routerLinkActive="focused"
-                *ngIf='userAccess == true'>
+                *ngIf='usersAccess == true'>
                 <i class="fa fa-users"></i>
                 <label>Usuários</label>
             </div>
@@ -193,7 +193,7 @@
         </div> -->
         <a href="#management-full" data-toggle="collapse" class="menu-item menu-item-has-items"
             [ngClass]="{'focused': selectedPage == 'Usuários' || selectedPage == 'Categorias' || selectedPage == 'Departamentos' || selectedPage == 'Cargos' }"
-            *ngIf="departmentsAccess == true || rolesAccess == true || userAccess == true || categoriesAccess == true">
+            *ngIf="departmentsAccess == true || rolesAccess == true || usersAccess == true || categoriesAccess == true">
             <div class="icon">
                 <i class="fa fa-cogs"></i>
             </div>

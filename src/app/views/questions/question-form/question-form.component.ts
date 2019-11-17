@@ -17,4 +17,6 @@ export class QuestionFormComponent implements OnInit {
     this.question = this.q;
   }
 
+  addQuestion(){}
+
 }

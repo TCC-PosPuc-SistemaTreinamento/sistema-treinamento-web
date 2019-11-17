@@ -24,7 +24,7 @@
           <input type="radio" class="star-option" id="star1" name="rating" value="1" [(ngModel)]="evaluation" /><label for="star1" title="1">1
             estrela</label>
         </fieldset>
-        <textarea class="form-control" placeholder="adicione um comentário..."></textarea>
+        <textarea class="form-control" placeholder="adicione um comentário..." [(ngModel)]="comment" ></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-wcapp btn-lg" data-dismiss="modal" (click)="onEvaluate()">Avaliar curso</button>

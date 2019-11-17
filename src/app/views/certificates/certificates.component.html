@@ -1,31 +1,42 @@
 <div class="content-card">
-    
-  <div class="col centered-title" *ngIf="loading">
-      <h1>Certificados</h1>
-      <div class="row justify-content-center">
-          <div class="loader"></div>
-      </div>
-  </div>
 
-  <div class="container-fluid" *ngIf="!loading">
-      <div class="row">
-          <div class="col centered-title">
-              <h1>Certificados</h1>
-          </div>
-      </div>
-      <hr>    
-      <div class="row">
-        <div class="col-md-12 d-flex flex-wrap">
-            <div *ngIf="certificates && certificates.length > 0">
-                <div class="certificate" *ngFor="let c of certificates">
+    <div class="col centered-title" *ngIf="loading">
+        <h1>Certificados</h1>
+        <div class="row justify-content-center">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="!loading">
+        <div class="row">
+            <div class="col centered-title">
+                <h1>Certificados</h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12 d-flex flex-wrap" *ngIf="certificates && certificates.length > 0">
+
+                <div class="certificate" *ngFor="let c of certificates; let i = index">
+                    <div class="certificateTemplate" id="certificateTemplate-{{ i }}">
+                        <div class="certificate__content">
+                            <h1>Certifcado</h1>
+                            <p> Certificamos para os devidos fins que <strong>{{ c?.user?.name }}</strong> concluiu com
+                                sucesso o
+                                curso de <strong>{{ c?.course?.name }}</strong>, no dia
+                                <strong>{{ c.completedDate | date:'dd/MM/yyyy' }}</strong>.</p>
+                        </div>
+                    </div>
                     <div class="certificate-image">
                         <img src="../../../assets/images/certificado1.png" alt="certificado">
                     </div>
+
                     <div class="certificate-content">
                         <div class="certificate-content-title">
                             <h3>{{ c.course ? c.course.name : '' }}</h3>
                         </div>
-                        <button class="btn btn-wcapp">Download do certificado</button>
+                        <button class="btn btn-wcapp" (click)="generatePDF(i, c?.course?.name)">Download do
+                            certificado</button>
                     </div>
                 </div>
             </div>
@@ -35,6 +46,5 @@
                 </div>
             </div>
         </div>
-      </div>
-  </div>
+    </div>
 </div>

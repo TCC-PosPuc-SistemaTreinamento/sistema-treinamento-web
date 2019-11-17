@@ -63,6 +63,7 @@ import { QuestionFormComponent } from './views/questions/question-form/question-
 import { ModalEvaluationComponent } from './views/courses/course-visualization/modal-evaluation/modal-evaluation.component';
 import { ModalQuizComponent } from './views/courses/course-visualization/modal-quiz/modal-quiz.component';
 import { MaterialComponent } from './views/courses/course-visualization/material/material.component';
+import { ChangePasswordComponent } from './views/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { MaterialComponent } from './views/courses/course-visualization/material
     QuestionFormComponent,
     ModalEvaluationComponent,
     ModalQuizComponent,
-    MaterialComponent
+    MaterialComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

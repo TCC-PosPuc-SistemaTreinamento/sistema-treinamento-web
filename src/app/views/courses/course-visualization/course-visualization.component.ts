@@ -46,7 +46,7 @@ export class CourseVisualizationComponent implements OnInit {
     if(loggedUser){
       this.userId = loggedUser.id;
     }
-    await this.getFiles();
+    // await this.getFiles();
     console.log(this.course)
 
 
@@ -67,10 +67,10 @@ export class CourseVisualizationComponent implements OnInit {
       unit: unit,
       ...this.quiz
     };
-    this.bsModalRef = this.modalService.show(ModalQuizComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ModalQuizComponent, { initialState, class: 'modal-xl' });
     this.bsModalRef.content.quiz = this.quiz;
   }
-  
+
   async openModalVideo(videos, unit: Number) {
     const initialState = {
       course: this.courseId,

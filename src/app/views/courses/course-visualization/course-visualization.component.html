@@ -1,26 +1,22 @@
 <div class="content-card">
 
-    <div class="col centered-title" *ngIf="loading">
-        <h1>Meus cursos</h1>
-        <div class="row justify-content-center">
-            <div class="loader"></div>
-        </div>
+  <div class="col centered-title" *ngIf="loading">
+    <h1>Meus cursos</h1>
+    <div class="row justify-content-center">
+      <div class="loader"></div>
     </div>
+  </div>
 
-    <div class="container-fluid" *ngIf="!loading">
-        <div class="row">
-            <div class="col centered-title">
-                <h1>{{ course.name }}
-                    <!-- <span class="course-evaluation"> -->
-                    <a href="#" data-toggle="modal" data-target="#modal-evaluation">
-                        start
-                        <!-- <i class="fa fa-start"></i> -->
-                    </a>
-                    <!-- </span> -->
-                </h1>
-            </div>
-        </div>
-        <hr>
+  <div class="container-fluid" *ngIf="!loading">
+    <div class="row">
+      <div class="col course__visualization__header">
+        <h1 class="course__visualization__title">{{ course.name }}</h1>
+        <a  href="#" class="course__visualization__rating" data-toggle="modal" data-target="#modal-evaluation">
+          <span class="fa fa-star checked" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+    <hr>
 
         <div class="row">
             <div class="col-md-12 course-content">
@@ -47,10 +43,10 @@
                         </footer>
                     </div>
                 </owl-carousel>
-                <button class="btn btn-primary" (click)="conclusion()">Concluir o curso</button>
             </div>
         </div>
     </div>
+  </div>
 </div>
 
 <app-modal-evaluation></app-modal-evaluation>

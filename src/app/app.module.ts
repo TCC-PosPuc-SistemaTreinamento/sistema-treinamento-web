@@ -29,6 +29,7 @@ import { QuizService } from './services/quiz.service';
 import { EnrollService } from './services/enroll.service';
 import { WatchService } from './services/watch.service';
 import { GradeService } from './services/grade.service';
+import { DashboardService } from './services/dashboard.service';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './views/courses/courses.component';
@@ -133,6 +134,7 @@ import { ChangePasswordComponent } from './views/change-password/change-password
     GradeService,
     UserService,
     CourseService,
+    DashboardService,
     RoleService,
     DepartmentService
   ],

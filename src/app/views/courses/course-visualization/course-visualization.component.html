@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col course__visualization__header">
         <h1 class="course__visualization__title">{{ course.name }}</h1>
-        <a  href="#" class="course__visualization__rating" data-toggle="modal" data-target="#modal-evaluation">
+        <a href="#" class="course__visualization__rating" data-toggle="modal" data-target="#modal-evaluation">
           <span class="fa fa-star checked" aria-hidden="true"></span>
         </a>
       </div>
@@ -29,16 +29,20 @@
               </h3>
             </header>
             <footer class="course-item-footer">
-              <a href="{{ unit.material && unit.material.contentType == 'application/pdf' ? ('/courses/material/' + unit.material.filename) : unit.material ? (urlCourseFile + '/' + unit.material.filename) : '' }}" class="footer-link" target="_blank" [class.is-disabled]="unit.material == undefined">
-                  <i class="fa fa-file-text-o"></i>
+              <a href="{{ unit.material && unit.material.contentType == 'application/pdf' ? ('/courses/material/' + unit.material.filename) : unit.material ? (urlCourseFile + '/' + unit.material.filename) : '' }}"
+                class="footer-link" target="_blank" [class.is-disabled]="unit.material == undefined">
+                <i class="fa fa-file-text-o"></i>
               </a>
-              <a href="javascript:void(0)" class="footer-link" [class.is-disabled]="unit.videos.length == 0" data-toggle="modal" data-target="#unit-courses" (click)="openModalVideo(unit.videos, unit.position)">
-                  <i class="fa fa-caret-square-o-right"></i>
+              <a href="javascript:void(0)" class="footer-link" [class.is-disabled]="unit.videos.length == 0"
+                data-toggle="modal" data-target="#unit-courses" (click)="openModalVideo(unit.videos, unit.position)">
+                <i class="fa fa-caret-square-o-right"></i>
               </a>
-              <a href="javascript:void(0)" class="footer-link" [class.is-disabled]="!unit.activity" (click)="openModalQuiz(unit.activity, unit.position)">
-                  <i class="fa fa-puzzle-piece"></i>
+              <a href="javascript:void(0)" class="footer-link" [class.is-disabled]="!unit.activity"
+                (click)="openModalQuiz(unit.activity, unit.position)">
+                <i class="fa fa-puzzle-piece"></i>
               </a>
-              <div class="shadow"></div>
+              <div class="shadow">
+              </div>
             </footer>
           </div>
         </owl-carousel>
@@ -46,5 +50,4 @@
     </div>
   </div>
 </div>
-
 <app-modal-evaluation></app-modal-evaluation>

@@ -21,24 +21,9 @@
                     <app-course-card [course]="c.course"></app-course-card>
                 </div>
                 <hr>
-
-                <div class="row">
-                    <div class="col-md-12 d-flex flex-wrap">
-                        <div *ngIf="courses && courses.length > 0">
-                            <div *ngFor="let c of courses">
-                                <app-course-card [course]="c.course"></app-course-card>
-                            </div>
-                        </div>
-                        <div *ngIf="courses.length == 0" class="col-sm-12">
-                            <div class="message-box">
-                                Você não está matriculado em nenhum curso no momento.
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div *ngIf="myCourses.length == 0" class="col-sm-12">
-                <p class="course-empty">Você não está matriculado em nenhum curso no momento.</p>
+                <div class="message-box">Você não está matriculado em nenhum curso no momento.</div>
             </div>
         </div>
     </div>

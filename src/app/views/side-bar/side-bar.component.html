@@ -37,11 +37,11 @@
             <label>Meus cursos</label>
         </div>
 
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/conquests']" routerLinkActive="focused"
+        <!-- <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/conquests']" routerLinkActive="focused"
             *ngIf="conquestsAccess == true">
             <i class="fa fa-trophy"></i>
             <label>Conquistas</label>
-        </div>
+        </div> -->
 
         <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/certificates']" routerLinkActive="focused"
             *ngIf="certificatesAccess == true">
@@ -55,11 +55,11 @@
             <label>Questões</label>
         </div>
         
-        <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/suggestions']" routerLinkActive="focused"
+        <!-- <div (click)="toggleMenu()" class="nav-btn borderless-b" [routerLink]="['/suggestions']" routerLinkActive="focused"
             *ngIf="suggestionsAccess == true">
             <i class="fa fa-commenting-o"></i>
             <label>Sugestões</label>
-        </div>
+        </div> -->
 
         <a href="#management-mobile" data-toggle="collapse" class="nav-btn borderless-b"
             *ngIf="departmentsAccess == true || rolesAccess == true || usersAccess == true || categoriesAccess == true">
@@ -96,7 +96,7 @@
 
         </div>
 
-        <div class="nav-btn">
+        <div class="nav-btn" (click)="toggleMenu()" [routerLink]="['/change-password']" routerLinkActive="focused">
           <i class="fas fa-lock"></i>
           <label>Alterar a senha</label>
         </div>
@@ -128,12 +128,12 @@
         </a>
 
         <div id="sidebar-logout" class="collapse">
-          <div class="menu-item sub-item">
-            <div class="icon">
-              <i class="fas fa-lock"></i>
+            <div class="menu-item sub-item" [routerLink]="['/change-password']" routerLinkActive="focused">
+                <div class="icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <label>Alterar a senha</label>
             </div>
-            <label>Alterar a senha</label>
-          </div>
             <div class="menu-item sub-item" (click)="logOut()">
                 <div class="icon">
                     <i class="fa fa-power-off"></i>
@@ -163,13 +163,13 @@
             </div>
             <label>Meus cursos</label>
         </div>
-        <div class="menu-item" [routerLink]="['/conquests']" routerLinkActive="focused" 
+        <!-- <div class="menu-item" [routerLink]="['/conquests']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'Conquistas'}" *ngIf='conquestsAccess == true'>
             <div class="icon">
                 <i class="fa fa-trophy"></i>
             </div>
             <label>Conquistas</label>
-        </div>
+        </div> -->
         <div class="menu-item" [routerLink]="['/certificates']" routerLinkActive="focused"
             [ngClass]="{'focused': selectedPage == 'Certificados'}" *ngIf='certificatesAccess == true'>
             <div class="icon">
@@ -184,13 +184,13 @@
             </div>
             <label>Questões</label>
         </div>
-        <div class="menu-item" [routerLink]="['/suggestions']" routerLinkActive="focused" 
+        <!-- <div class="menu-item" [routerLink]="['/suggestions']" routerLinkActive="focused" 
             [ngClass]="{'focused': selectedPage == 'Sugestões'}" *ngIf='suggestionsAccess == true'>
             <div class="icon">
                 <i class="fa fa-commenting-o"></i>
             </div>
             <label>Sugestões</label>
-        </div>
+        </div> -->
         <a href="#management-full" data-toggle="collapse" class="menu-item menu-item-has-items"
             [ngClass]="{'focused': selectedPage == 'Usuários' || selectedPage == 'Categorias' || selectedPage == 'Departamentos' || selectedPage == 'Cargos' }"
             *ngIf="departmentsAccess == true || rolesAccess == true || userAccess == true || categoriesAccess == true">

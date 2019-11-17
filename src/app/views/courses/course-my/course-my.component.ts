@@ -10,7 +10,7 @@ import { SecurityService } from '../../../services/security.service';
 })
 export class CourseMyComponent implements OnInit {
   loading: Boolean = false;
-  myCourses: any[];
+  myCourses: any[] = [];
 
   constructor(
     private enrollService: EnrollService,

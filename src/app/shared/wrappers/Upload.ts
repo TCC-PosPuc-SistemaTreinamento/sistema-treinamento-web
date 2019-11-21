@@ -47,6 +47,11 @@ export class Upload {
         const options = this.getHeaders();
         return this.http.get(this.baseUrl + endPoint, options)
     }
+
+    remove(endPoint: String, filename: String) {
+        const options = this.getHeaders();
+        return this.http.post(this.baseUrl + endPoint, { filename }, options)
+    }
     
     post(endPoint: String, formData) {
         const options = this.getHeaders();

@@ -107,7 +107,9 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal"
-                    (click)="addQuestion()">Salvar</button>
+                          [disabled]="questionAux.statement == '' || questionAux.alternativeA == '' || 
+                                      questionAux.alternativeB == '' || questionAux.alternativeC == '' || questionAux.alternativeD == ''"
+                          (click)="addQuestion()">Salvar</button>
                 </div>
               </div>
             </div>
@@ -205,7 +207,9 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="resetQuestion(i)">Cancelar</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                              [disabled]="question.statement == '' || question.alternativeA == '' || 
+                                          question.alternativeB == '' || question.alternativeC == '' || question.alternativeD == ''">Salvar</button>
                       </div>
                     </div>
                   </div>

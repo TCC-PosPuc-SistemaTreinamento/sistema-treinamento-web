@@ -13,7 +13,7 @@ declare const swal: any;
 })
 export class ChangePasswordComponent implements OnInit {
   loading: boolean = false;
-  user: User = new User();
+  userPassword: String = '';
   newPassword: String = '';
   confirmNewPassword: String = '';
 
@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
   async edit() {
 
     if (this.newPassword !== this.confirmNewPassword ) {
-      swal("Erro!", "Senhas diferentes", "error");
+      swal("Erro!", "A confirmação de senha não confere", "error");
       return;
     }
 
@@ -37,23 +37,23 @@ export class ChangePasswordComponent implements OnInit {
 
       if (loggedUser) {
         const response = await this.userService.changePassword(
-          this.user.password,
+          this.userPassword,
           this.newPassword,
           loggedUser.id
         );
 
         if(response.id) {
-          swal("Sucesso!", "Senha cadastrada com sucesso!", "success");
+          swal("Sucesso!", "Senha atualizada com sucesso!", "success");
         } else {
           swal("Erro!", "Não foi possível atualizar a senha", "error");
         }
       }
 
     } catch(error) {
-      swal("Error!", error.message, "error")
+      swal("Error!", error, "error")
     }
 
-    this.user.password = '';
+    this.userPassword = '';
     this.newPassword = '';
     this.confirmNewPassword = '';
   }

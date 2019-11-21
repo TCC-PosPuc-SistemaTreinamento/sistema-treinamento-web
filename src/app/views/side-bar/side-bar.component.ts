@@ -67,6 +67,12 @@ export class SideBarComponent implements OnInit {
       this.conquestsAccess = true;
       this.certificatesAccess = true;
       this.suggestionsAccess = true;
+      this.dashboardAccess = false;
+      this.questionsAccess = false;
+      this.usersAccess = false;
+      this.categoriesAccess = false;
+      this.departmentsAccess = false;
+      this.rolesAccess = false;
     }
   }
 

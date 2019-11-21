@@ -46,7 +46,7 @@
               <a class="course__card" [routerLink]="['/courses', course._id]" *ngFor="let course of courses">
 
                 <div class="course__card__thumb">
-                  <img src="{{ course.image ? course.image : '../../../assets/images/certesttestificado1.png' }}" alt="Imagem do curso {{course.name}}" />
+                  <img src="../../../assets/images/logo.png" alt="Imagem do curso {{course.name}}" />
                 </div>
                 <div class="course__card__details">
                   <h2 class="course__card__details__title">{{course.name}}</h2>

@@ -23,6 +23,18 @@
     p {
       display: block;
     }
+
+    figure{
+      width: 100px;
+      margin: 100px auto 0 auto;
+      align-content: center;
+      padding: 30px;
+      background-color: #845586;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 }
 

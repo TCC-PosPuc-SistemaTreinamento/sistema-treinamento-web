@@ -12,7 +12,7 @@ declare const swal: any;
 export class RolesComponent implements OnInit {
   loading: Boolean = false;
   roles: Role[];
-  role: Role = new Role();
+  roleAux: Role = new Role();
 
 
   constructor(private roleService: RoleService) { }
@@ -26,16 +26,20 @@ export class RolesComponent implements OnInit {
 
   async save() {
     try{
-      let response = await this.roleService.create(this.role);
+      let response = await this.roleService.create(this.roleAux);
       if(response._id){
-        this.role._id = response._id; 
-        this.roles.push(this.role);
+        this.roleAux._id = response._id; 
+        this.roles.push(this.roleAux);
         swal("Cargo cadastrado com sucesso", "", "success");
-        this.role = new Role();
+        this.roleAux = new Role();
       }
     } catch(err) {
       swal("Erro", "Erro ao cadastrar cargo", "error");
     }
+  }
+
+  resetRole(){
+    this.roleAux = new Role();
   }
 
   async edit(role) {

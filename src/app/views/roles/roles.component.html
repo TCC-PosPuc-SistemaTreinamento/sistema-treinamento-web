@@ -30,13 +30,13 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" [(ngModel)]="role.name">
+                                        <input type="text" class="form-control" [(ngModel)]="roleAux.name">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="resetRole()">Fechar</button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                        (click)="save()">Salvar</button>
+                                        (click)="save()" [disabled]="roleAux.name == ''">Salvar</button>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Fechar</button>
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="role.name == ''"
                                                         (click)="edit(role)">Salvar</button>
                                                 </div>
                                             </div>

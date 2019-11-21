@@ -36,17 +36,14 @@ export class CourseService {
     }
 
     // async uploadFiles(files: Set<File>, id): Promise<any>{
-    async uploadFiles(f: any, id): Promise<any>{
+    uploadFiles(f: any, id): any{
         const name = f.file[0].name;
         const fileName = id + '_' + f.unit + '.' + name.split('.')[name.split('.').length-1];
         const formData = new FormData();
         formData.append('file', f.file[0], fileName)
         // console.log(formData.get("file"))
         let response = this.upload.post(`${this.endPoint}/${id}/upload`, formData);
-        response.subscribe((res) => {
-            return res;
-        })
-        return true;
+        return response;
     }
 
     async verifyConclusion(id: String, user): Promise<any>{
@@ -69,10 +66,10 @@ export class CourseService {
     //     return response;
     // }
 
-    async deleteFile(name: String){}
-
-    async download(name: String){
-        return ''
+    async deleteFile(id: String, filename: String): Promise<any>{
+        console.log('metodo delete file')
+        let response = this.upload.remove(`${this.endPoint}/${id}/file/delete`, filename);
+        return response;
     }
 
     async createEvaluate(id: String, evaluate: any) {

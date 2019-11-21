@@ -17,20 +17,21 @@
 
         <div class="row">
             <div class="col-md-12">
-                <form>
+                <form #f="ngForm">
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="title-section">Estrutura do curso</h3>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label">Nome do curso</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" name="name" [(ngModel)]="course.name">
+                                    <input type="text" class="form-control" name="name" [(ngModel)]="course.name" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label">Categoria do curso</label>
                                 <div class="col-md-10">
-                                    <select class="form-control" name="category" [(ngModel)]="course.category" (change)="changeQuizCategory()">
+                                    <select class="form-control" name="category" [(ngModel)]="course.category" (change)="changeQuizCategory()" required>
+                                        <option value="">Selecione uma categoria</option>
                                         <option *ngFor="let categ of categories" [value]="categ._id">{{ categ.name }}
                                         </option>
                                     </select>
@@ -39,7 +40,7 @@
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label">Instrutor do curso</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" name="instructor" [(ngModel)]="course.instructor">
+                                    <input type="text" class="form-control" name="instructor" [(ngModel)]="course.instructor" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -58,13 +59,13 @@
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label">Capa do curso</label>
                                 <div class="col-md-10">
-                                    <input type="file" name="image" (change)="selectFile($event, 'capa')">
+                                    <input type="file" name="image" accept="image/*" (change)="selectFile($event, 'capa')">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label">Palavras-chave</label>
                                 <div class="col-md-10">
-                                    <input type="text" [(ngModel)]='course.keyWords' name="keyWords" placeholder="Adicione palavras chave">
+                                    <input type="text" class="form-control" [(ngModel)]='course.keyWords' name="keyWords" required placeholder="Adicione palavras-chave separando-as por vírgula">
                                     <!-- <tag-input [(ngModel)]='course.keyWords' name="keyWords" [separatorKeys]="[' ','\n']" [placeholder]="'adicione palavras-chave'" [secondaryPlaceholder]="'Adicione palavras-chave'"></tag-input> -->
                                 </div>
                             </div>
@@ -126,14 +127,10 @@
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="video-{{ i }}" tabindex="-1" role="dialog"
                                                         [attr.aria-labelledby]="'video-title-' + i" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-dialog modal-lg content-videos" role="document">
                                                             <div class="modal-content text-left">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="video-title-{{ i }}">Vídeo-aula</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Fechar">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
+                                                                    <h5 class="modal-title" id="video-title-{{ i }}">Vídeo-aulas</h5>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="videos">
@@ -159,9 +156,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default"
-                                                                        data-dismiss="modal">Fechar</button>
-                                                                    <button type="button" class="btn btn-primary"
+                                                                    <button type="button" class="btn btn-default" (click)="cleanVideos(i)"
+                                                                        data-dismiss="modal">Limpar vídeo-aulas</button>
+                                                                    <button type="button" class="btn btn-primary" [disabled]="videoInvalid(i)"
                                                                         data-dismiss="modal" >Salvar</button>
                                                                 </div>
                                                             </div>
@@ -179,10 +176,6 @@
                                                             <div class="modal-content text-left">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="activity-title-{{ i }}">Atividade</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Fechar">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
@@ -198,7 +191,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default"
+                                                                    <button type="button" class="btn btn-default" (click)="resetActivity(i)"
                                                                         data-dismiss="modal">Fechar</button>
                                                                     <button type="button" class="btn btn-primary"
                                                                         data-dismiss="modal" >Salvar</button>

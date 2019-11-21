@@ -22,7 +22,7 @@ export class UserService {
         return await this.httpClient.post(this.endPoint, user);
     }
 
-    async edit(user: User) {
+    async edit(user: User): Promise<any> {
         return await this.httpClient.update(this.endPoint, user._id, user);
     }
 

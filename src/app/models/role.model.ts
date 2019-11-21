@@ -1,5 +1,5 @@
 export class Role {
     _id: String;
-    name: String;
+    name: String = '';
     isDeleted: boolean;
 }

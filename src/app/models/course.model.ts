@@ -7,7 +7,7 @@ export class Course {
     category: String = "";
     keyWords: String = '';
     visible: boolean = true;
-    image: String = '';
+    image: any;
     instructor: String = '';
     units: Unit[] = [];
 }

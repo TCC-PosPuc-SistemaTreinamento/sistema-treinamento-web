@@ -30,8 +30,11 @@
                     color: $color-danger;
                     font-size: 7em;
                 }
-    
-                
+            }
+
+            .content-videos{
+                max-height: 90vh !important;
+                overflow-y: auto !important;
             }
         }
     }
@@ -44,4 +47,8 @@
         margin: 10px 0;
         color: #fff;
     } 
+}
+
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid red;
 }

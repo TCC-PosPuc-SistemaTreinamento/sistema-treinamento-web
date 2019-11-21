@@ -17,28 +17,20 @@
     
             <div class="row">
                 <div class="col-md-12">
-                    <div>
-                        <h2>TESTETETETE</h2>
-                        <div *ngFor="let file of fileList">
-                            <img src="{{urlCourseFile}}/{{file.filename}}" alt="" *ngIf="file.isImage">
-                            <a href="{{urlCourseFile}}/{{file.filename}}" target="_blank" *ngIf="!file.isImage">{{ file.filename }}</a>
-                            <!-- <a href="javascript:void(0)" (click)="downloadFile(file.filename)">{{ file.filename }}</a> -->
-                        </div>
-                    </div>
-                    <form>
+                    <form #f="ngForm">
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="title-section">Estrutura do curso</h3>
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Nome do curso</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" name="name" [(ngModel)]="course.name">
+                                        <input type="text" class="form-control" name="name" [(ngModel)]="course.name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Categoria do curso</label>
                                     <div class="col-md-10">
-                                        <select class="form-control" name="category" [(ngModel)]="course.category" (change)="changeQuizCategory()">
+                                        <select class="form-control" name="category" [(ngModel)]="course.category" (change)="changeQuizCategory()" required>
                                             <option *ngFor="let categ of categories" [value]="categ._id">{{ categ.name }}
                                             </option>
                                         </select>
@@ -47,7 +39,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Instrutor do curso</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" name="instructor" [(ngModel)]="course.instructor">
+                                        <input type="text" class="form-control" name="instructor" [(ngModel)]="course.instructor" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -66,27 +58,34 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Capa do curso</label>
                                     <div class="col-md-10">
-                                        <div class="row">
+                                        <div class="row" *ngIf="course.image == 'false'">
                                             <div class="col-sm-10">
-                                                <input type="file" name="image" (change)="selectFile($event, 'capa')">
+                                                <input type="file" name="image" accept="image/*" (change)="selectFile($event, 'capa')">
                                             </div>
                                             <div class="col-sm-2">
-                                                <a href="" class="btn btn-wcapp btn-margin-right" (click)="upload()">
+                                                <button class="btn btn-wcapp btn-margin-right" (click)="upload()" [disabled]="files.length == 0">
                                                     <span class="btn-label">
                                                         <i class="fa fa-upload"></i>
                                                     </span>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        
+                                        <div class="row" *ngIf="course.image != 'false'">
+                                            <a href="{{urlCourseFile}}/{{course.image.filename}}" target="_blank" class="btn btn-wcapp ml-3" title="Download da capa">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                            </a>
+                                            <button class="btn btn-danger ml-3" title="Excluir capa" (click)="deleteFile(course.image.filename)">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Palavras-chave</label>
                                     <div class="col-md-10">
-                                        <input type="text" [(ngModel)]='course.keyWords' name="keyWords" placeholder="Adicione palavras chave">
+                                        <input type="text" class="form-control" [(ngModel)]='course.keyWords' name="keyWords" required placeholder="Adicione palavras-chave separando-as por vírgula">
                                         <!-- <tag-input [(ngModel)]='course.keyWords' name="keyWords" [separatorKeys]="[' ','\n']" [placeholder]="'adicione palavras-chave'" [secondaryPlaceholder]="'Adicione palavras-chave'"></tag-input> -->
                                     </div>
                                 </div>
@@ -121,21 +120,39 @@
                                                                 <div class="modal-content text-left">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="material-title-{{ i }}">Material didático</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                            aria-label="Fechar">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="form-group">
-                                                                            <input type="file" name="material" class="form-control" (change)="selectFile($event, 'unit'+unit.position)">
+                                                                            <!-- <input type="file" name="material" class="form-control" (change)="selectFile($event, 'unit'+unit.position)"> -->
+                                                                            <div>
+                                                                                <div class="row" *ngIf="unit.material == undefined || unit.materal == 'false'">
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="file" name="unit-material-{{ i }}" (change)="selectFile($event, 'unit'+unit.position)">
+                                                                                    </div>
+                                                                                    <div class="col-sm-2">
+                                                                                        <button class="btn btn-wcapp btn-margin-right" (click)="upload()" [disabled]="files.length == 0">
+                                                                                            <span class="btn-label">
+                                                                                                <i class="fa fa-upload"></i>
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row" *ngIf="unit.material != 'false' && unit.material != undefined">
+                                                                                    <a href="{{urlCourseFile}}/{{unit.material.filename}}" target="_blank" class="btn btn-wcapp ml-3" title="Download do material didático">
+                                                                                        <span class="btn-label">
+                                                                                            <i class="fa fa-download"></i>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                    <button class="btn btn-danger ml-3" title="Excluir material ditático" (click)="deleteFile(unit.material.filename)">
+                                                                                        <strong>X</strong>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default"
+                                                                        <button type="button" class="btn btn-default" (click)="resetFiles()"
                                                                             data-dismiss="modal">Fechar</button>
-                                                                        <button type="button" class="btn btn-primary"
-                                                                            data-dismiss="modal" >Salvar</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -148,25 +165,21 @@
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="video-{{ i }}" tabindex="-1" role="dialog"
                                                             [attr.aria-labelledby]="'video-title-' + i" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                            <div class="modal-dialog modal-lg content-videos" role="document">
                                                                 <div class="modal-content text-left">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="video-title-{{ i }}">Vídeo-aula</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                            aria-label="Fechar">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
+                                                                        <h5 class="modal-title" id="video-title-{{ i }}">Vídeo-aulas</h5>
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="videos">
                                                                             <div class="form-row" *ngFor="let video of unit.videos; let j = index">
                                                                                 <div class="form-group col-sm-5">
                                                                                     <label>Descrição</label>
-                                                                                    <input type="texte" class="form-control" [(ngModel)]="video.legend" name="video-legend-{{ j }}">
+                                                                                    <input type="texte" class="form-control" [(ngModel)]="video.legend" name="video-legend-{{ j }}-{{ i }}">
                                                                                 </div>
                                                                                 <div class="form-group col-sm-5">
                                                                                     <label>Link</label>
-                                                                                    <input type="text" class="form-control" [(ngModel)]="video.url" name="video-url-{{ j }}">
+                                                                                    <input type="text" class="form-control" [(ngModel)]="video.url" name="video-url-{{ j }}-{{ i }}">
                                                                                 </div>
                                                                                 <div class="form-group col-sm-1">
                                                                                     <label>{{ " " }}</label><br>
@@ -181,9 +194,9 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default"
-                                                                            data-dismiss="modal">Fechar</button>
-                                                                        <button type="button" class="btn btn-primary"
+                                                                        <button type="button" class="btn btn-default" (click)="cleanVideos(i)"
+                                                                            data-dismiss="modal">Limpar vídeo-aulas</button>
+                                                                        <button type="button" class="btn btn-primary" [disabled]="videoInvalid(i)"
                                                                             data-dismiss="modal" >Salvar</button>
                                                                     </div>
                                                                 </div>
@@ -201,10 +214,6 @@
                                                                 <div class="modal-content text-left">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="activity-title-{{ i }}">Atividade</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                            aria-label="Fechar">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="form-group">
@@ -220,8 +229,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default"
-                                                                            data-dismiss="modal">Fechar</button>
+                                                                        <button type="button" class="btn btn-default" (click)="resetActivity(i)"
+                                                                            data-dismiss="modal">Limpar</button>
                                                                         <button type="button" class="btn btn-primary"
                                                                             data-dismiss="modal" >Salvar</button>
                                                                     </div>

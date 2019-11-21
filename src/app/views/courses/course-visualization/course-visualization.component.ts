@@ -46,10 +46,7 @@ export class CourseVisualizationComponent implements OnInit {
     if(loggedUser){
       this.userId = loggedUser.id;
     }
-    // await this.getFiles();
-    console.log(this.course)
-
-
+    await this.getFiles();
     this.loading = false;
   }
 

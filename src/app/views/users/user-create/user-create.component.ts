@@ -43,12 +43,18 @@ export class UserCreateComponent implements OnInit {
 
   async save() {
     try{
-      let response = await this.userService.create(this.user);
-      if(response._id) {
-        swal("Usuário cadastrado com sucesso", "", "success");
-        this.clear();
-      } else {
-        swal("Erro ao cadastrar usuário", response._body, "error");
+      if (this.user.password !== '' && this.user.password !== this.passwordConfirm) {
+        swal("Erro!", "Senhas diferentes", "error");
+      } else { 
+        let response = await this.userService.create(this.user);
+        if(response._id) {
+          swal("Usuário cadastrado com sucesso", "", "success");
+          this.clear();
+          this.router.navigate(['/users']);
+        } else {
+          const res = JSON.parse(response._body);
+          swal("Erro ao cadastrar usuário", res.message, "error");
+        }
       }
     } catch(err) {
       swal("Erro", "Erro ao cadastrar usuário", "error");

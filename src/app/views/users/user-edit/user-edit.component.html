@@ -17,21 +17,21 @@
     
             <div class="row">
                 <div class="col-md-12">
-                    <form>
+                    <form #f="ngForm">
                         <section class="personal-data">
                             <h3 class="title-section">Dados pessoais</h3>
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label>Nome:<span style="color:red;">*</span></label>
-                                        <input type="text" name="name" class="form-control" placeholder="Nome do usuário"
+                                        <input type="text" name="name" class="form-control" placeholder="Nome do usuário" required
                                             [(ngModel)]="user.name" />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>CPF:<span style="color:red;">*</span></label>
-                                        <input type="text" name="cpf" class="form-control" placeholder="CPF do usuário"
+                                        <input type="text" name="cpf" class="form-control" placeholder="CPF do usuário" required
                                             [(ngModel)]="user.cpf" />
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Data de nascimento:<span style="color:red;">*</span></label>
-                                        <ng-datepicker [options]="datePickerOptions" [(ngModel)]="user.born" name="born">
+                                        <ng-datepicker [options]="datePickerOptions" [(ngModel)]="user.born" name="born" required>
                                         </ng-datepicker>
                                     </div>
                                 </div>
@@ -66,16 +66,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Cargo:<span style="color:red;">*</span></label>
-                                        <select name="role" [(ngModel)]="user.role" class="form-control">
+                                        <select name="role" [(ngModel)]="user.role" class="form-control" required>
                                             <option value="" selected="selected">Selecione o cargo</option>
-                                            <option [ngValue]="role._id" *ngFor="let role of roles">{{ role.name }}</option>
+                                            <option value="{{ role._id }}" *ngFor="let role of roles">{{ role.name }}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Departamento:<span style="color:red;">*</span></label>
-                                        <select name="department" [(ngModel)]="user.department" class="form-control">
+                                        <select name="department" [(ngModel)]="user.department" class="form-control" required>
                                             <option value="" selected="selected">Selecione o departamento</option>
                                             <option value="{{ dp._id }}" *ngFor="let dp of departments">{{ dp.name }}
                                             </option>
@@ -99,18 +99,24 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>E-mail:<span style="color:red;">*</span></label>
-                                        <input type="email" name="email" class="form-control"
+                                        <input type="email" name="email" class="form-control" required email
                                             placeholder="E-mail do usuário" [(ngModel)]="user.username" />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="form-check mb-2 mr-sm-2">
+                                        <input type="checkbox" class="form-check-input" name="alterar-senha" [(ngModel)]="changePassword" (change)="changePass()">
+                                        <label class="form-check-label">Alterar senha?</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" *ngIf="changePassword">
                                     <div class="form-group">
                                         <label>Senha:<span style="color:red;">*</span></label>
                                         <input type="password" name="password" class="form-control"
                                             placeholder="Senha do usuário" [(ngModel)]="user.password" />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6" *ngIf="changePassword">
                                     <div class="form-group">
                                         <label>Confirmar senha:<span style="color:red;">*</span></label>
                                         <input type="password" name="password" class="form-control"
@@ -151,7 +157,7 @@
                                 <button class="btn btn-warning" type="button" (click)="cancel()">
                                     <i class="fa fa-close"></i> Cancelar
                                 </button>
-                                <button class="btn btn-success ml-3" type="button" (click)="edit()">
+                                <button class="btn btn-success ml-3" type="button" (click)="edit()" [disabled]="!f.valid">
                                     <i class="fa fa-check"></i> Editar
                                 </button>
                             </div>

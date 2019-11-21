@@ -21,10 +21,13 @@
                     <div class="certificateTemplate" id="certificateTemplate-{{ i }}">
                         <div class="certificate__content">
                             <h1>Certifcado</h1>
-                            <p> Certificamos para os devidos fins que <strong>{{ c?.user?.name }}</strong> concluiu com
+                            <p> Certificamos para os devidos fins, que <strong>{{ c?.user?.name }}</strong> concluiu com
                                 sucesso o
-                                curso de <strong>{{ c?.course?.name }}</strong>, no dia
+                                curso de <strong>{{ c?.course?.name }}</strong> no dia
                                 <strong>{{ c.completedDate | date:'dd/MM/yyyy' }}</strong>.</p>
+                            <figure>
+                                <img src="../../../assets/images/logo.png" alt="">
+                            </figure>
                         </div>
                     </div>
                     <div class="certificate-image">

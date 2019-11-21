@@ -38,6 +38,10 @@ export class DepartmentsComponent implements OnInit {
     }
   }
 
+  resetDepartment(){
+    this.department = new Department();
+  }
+
   async edit(department) {
     try{
       let response = await this.departmentService.edit(department);

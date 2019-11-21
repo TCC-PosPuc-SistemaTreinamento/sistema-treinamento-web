@@ -38,6 +38,10 @@ export class CategoriesComponent implements OnInit {
       swal("Erro", "Erro ao cadastrar categoria", "error");
     }
   }
+
+  resetCategory(){
+    this.category = new Category();
+  }
   
   async edit(category) {
     try{

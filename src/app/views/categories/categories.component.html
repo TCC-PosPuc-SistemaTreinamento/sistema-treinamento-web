@@ -105,10 +105,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default"
+                                        <button type="button" class="btn btn-default" (click)="resetCategory()"
                                             data-dismiss="modal">Fechar</button>
                                         <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                            (click)="save()">Salvar</button>
+                                            (click)="save()" [disabled]="category.name == ''">Salvar</button>
                                     </div>
                                 </div>
                             </div>

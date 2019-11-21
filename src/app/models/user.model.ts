@@ -9,8 +9,8 @@ export class User {
     name: String = ''; 
     isActive: boolean = true; 
     fisrtAccess: boolean = true;
-    department: Department = new Department();
-    role: Role = new Role(); 
+    department: String = '';
+    role: String = ''; 
     phone: String = ''; 
     privilege: String = 'user'; 
     born: Date;

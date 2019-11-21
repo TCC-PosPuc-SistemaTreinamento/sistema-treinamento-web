@@ -5,6 +5,6 @@ export class Grade {
     user: String = "";
     course: String = "";
     unit: Number = 0;
-    grade: Number = 0;
+    grade: number = 0;
     answers: Answer[];
 }

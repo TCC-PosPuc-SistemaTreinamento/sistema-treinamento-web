@@ -62,7 +62,7 @@ export class ModalQuizComponent implements OnInit {
 
     let response = await this.gradeService.create(this.grade);
     if(response._id){
-      swal('Parabéns!', 'Suas respostas foram enviadas com sucesso', 'success');
+      swal('Parabéns!', 'Suas respostas foram enviadas com sucesso e você obteve nota: ' + (this.grade.grade / 10).toFixed(1), 'success');
       const courseComplete = await this.courseService.verifyConclusion(this.course, this.user);
       console.log(courseComplete)
       if(courseComplete._id) {

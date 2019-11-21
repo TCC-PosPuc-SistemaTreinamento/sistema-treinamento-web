@@ -19,4 +19,13 @@ export class QuestionFormComponent implements OnInit {
 
   addQuestion(){}
 
+  questionInvalid(){
+    if(this.question.statement == '' || this.question.alternativeA == '' || 
+      this.question.alternativeB == '' ||
+      this.question.alternativeC == '' ||
+      this.question.alternativeD == '')
+      return true;
+    return false;                       
+  }
+
 }

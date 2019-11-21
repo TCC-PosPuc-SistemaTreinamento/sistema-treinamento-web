@@ -25,7 +25,9 @@ export class CourseEditComponent implements OnInit {
   fileList = [];
   selectedFiles:FileList;
   downloadUrl: String = '';
+  imageAux: String = '';
   urlCourseFile: String = environment.apiBaseUrl + '/courses/files';
+  files = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -43,10 +45,13 @@ export class CourseEditComponent implements OnInit {
     await this.getFiles();
     
     console.log(this.fileList)
-    if(this.fileList && this.fileList.length > 0){
-      this.download(this.fileList[0].Key);
-    }
+    // if(this.fileList && this.fileList.length > 0){
+    //   this.download(this.fileList[0].Key);
+    // }
     console.log(this.urlCourseFile)
+
+
+    console.log(this.course)
 
     this.loading = false;
   }
@@ -97,7 +102,7 @@ export class CourseEditComponent implements OnInit {
   }
 
   courseInvalid() {
-    if(this.course.name == '' || this.course.category == '' || this.course.instructor == '' || this.course.units.length == 0)
+    if(this.course.name == '' || this.course.category == '' || this.course.instructor == '' || this.course.keyWords == '' || this.course.units.length == 0)
       return true;
     return false;
   }
@@ -105,7 +110,6 @@ export class CourseEditComponent implements OnInit {
   async changeQuizCategory(){
     this.categName = this.categories.find(c => c._id === this.course.category).name;
     this.quizzes = await this.categoryService.getQuizzesByCategory(this.course.category);
-    console.log(this.quizzes)
   }
 
   addVideo(i){
@@ -117,14 +121,26 @@ export class CourseEditComponent implements OnInit {
     this.course.units[i].videos.splice(j, 1);
   }
 
+  resetActivity(i){
+    this.course.units[i].activity = null;
+  }
+
   async getFiles(){
     console.log('get file')
     const response = await this.courseService.getFiles(this.course._id);
     response.subscribe((res: any) => {
+      console.log(res);
       if(res.err) return;
       if(res && res.length > 0){
         res.forEach(file => {
             this.fileList.push(file)
+            if(file.filename.includes('unit')){
+              let unit = parseInt(file.filename.split('unit')[1].split('.')[0])-1;
+              this.course.units[unit].material = file;
+            }
+            if(file.filename.includes('capa')){
+              this.course.image = file;
+            }
         });
       }
     })
@@ -132,16 +148,50 @@ export class CourseEditComponent implements OnInit {
   }
 
 
-  
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
+  async upload() {
+    let response = this.courseService.uploadFiles(this.files[0], this.course._id);
+    response.subscribe(
+      res => {
+        if(res.message){
+          swal("upload realizado com sucesso", "", "success");
+          this.getFiles();
+          this.files = [];
+        }
+      },
+      err => {
+        swal("Não foi possível realizar o upload.", "", "error");
+        this.files = [];
+      }
+    );
   }
+  
+  selectFile(event, unit) {
+    this.files = [];
+    this.files.push({ file: event.target.files, unit: unit });
+    console.log('guardando arquivo')
+    console.log(this.files)
+  }
+
   async deleteFile(name){
-    await this.courseService.deleteFile(name)
+    console.log('delete arquivo ', name)
+    await this.courseService.deleteFile(this.course._id, name)
     await this.getFiles();
   }
-  async download(name){
-    this.downloadUrl = await this.courseService.download(name);
+  
+  videoInvalid(i){
+    for(let v of this.course.units[i].videos){
+      if(v.legend == '' || v.url == '')
+        return true;
+    }
+    return false;
+  }
+
+  cleanVideos(i){
+    this.course.units[i].videos = [];
+  }
+
+  resetFiles(){
+    this.files = [];
   }
 
 }

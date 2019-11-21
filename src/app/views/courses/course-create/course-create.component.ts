@@ -87,7 +87,7 @@ export class CourseCreateComponent implements OnInit {
   }
 
   courseInvalid() {
-    if(this.course.name == '' || this.course.category == '' || this.course.instructor == '' || this.course.units.length == 0)
+    if(this.course.name == '' || this.course.category == '' || this.course.instructor == '' || this.course.keyWords == '' || this.course.units.length == 0)
       return true;
     return false;
   }
@@ -109,14 +109,32 @@ export class CourseCreateComponent implements OnInit {
   selectFile(event, unit){
     this.files.push({ file: event.target.files, unit: unit });
   }
+
+  resetActivity(i){
+    this.course.units[i].activity = null;
+  }
   
   async upload(courseId) {
     let length = this.files.length;
     for(let i=0; i<length; i++){      
-      let response = await this.courseService.uploadFiles(this.files[i], courseId);
-      console.log(response)
+      let response = this.courseService.uploadFiles(this.files[i], courseId);
+      response.subscribe(
+        res => res,
+        err => err
+      );
     }
   }
 
+  videoInvalid(i){
+    for(let v of this.course.units[i].videos){
+      if(v.legend == '' || v.url == '')
+        return true;
+    }
+    return false;
+  }
+
+  cleanVideos(i){
+    this.course.units[i].videos = [];
+  }
 
 }

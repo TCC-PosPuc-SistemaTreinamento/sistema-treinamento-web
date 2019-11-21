@@ -34,19 +34,19 @@ export class ModalEvaluationComponent implements OnInit {
 
     if(this.evaluation == 0)
       swal("Você deve avaliar o curso com uma nota de 1 a 5", "", "error");
-      else{
+    else{
         try{
-        const res = await this.courseService.createEvaluate(this.courseId, {
-          userId: this.userId,
-          comment: this.comment,
-          rating: this.evaluation,
-        });
+          const res = await this.courseService.createEvaluate(this.courseId, {
+            userId: this.userId,
+            comment: this.comment,
+            rating: this.evaluation,
+          });
 
-        if (res !== null) {
-          swal("Parabéns!", "Sua avaliação foi realizada com sucesso", "success");
-        } else {
-          swal("Você já avaliou o curso!", "", "error");
-        }
+          if (res !== null) {
+            swal("Parabéns!", "Sua avaliação foi realizada com sucesso", "success");
+          } else {
+            swal("Você já avaliou o curso!", "", "error");
+          }
 
       } catch (error) {
         swal("Ocorreu algum erro ao salvar a avaliação!", "", "error");

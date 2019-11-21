@@ -20,6 +20,8 @@ export class UserEditComponent implements OnInit {
   roles: Role[];
   departments: Department[];
   user: User = new User();
+  changePassword: Boolean = false;
+  passwordConfirm: String = '';
   datePickerOptions = this.commonHelper.getDatePickerOptions();
   datePattern = /^(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}$/i;
 
@@ -34,6 +36,8 @@ export class UserEditComponent implements OnInit {
     this.loading = true;
     const id = this.route.snapshot.params['id'];
     this.user = await this.userService.getById(id);
+    this.user.role = this.user.role["_id"];
+    this.user.department = this.user.department["_id"];
     console.log(this.user)
     this.roles = await this.roleService.getAll();
     this.departments = await this.departmentService.getAll();
@@ -42,14 +46,20 @@ export class UserEditComponent implements OnInit {
 
   async edit() {
     try{
-      const response = await this.userService.edit(this.user);
-      console.log(response)
-      if(response._id){
-        swal("Usuário editado com sucesso", "", "success")
-        this.router.navigate(['/users']);
+      console.log( this.user )
+      if (this.user.password !== '' && this.user.password !== this.passwordConfirm) {
+        swal("Erro!", "Senhas diferentes", "error");
       } else {
-        swal("Erro ao editar usuário", response._body, "error");
+        let response = await this.userService.edit(this.user);
+        console.log(response)
+        if(response._id){
+          swal("Usuário editado com sucesso", "", "success")
+          this.router.navigate(['/users']);
+        } else {
+          swal("Erro ao editar usuário", response.message, "error");
+        }
       }
+
     } catch(err) {
       swal("Erro", "Erro ao editar usuário", "error");
       this.router.navigate(['/users']);
@@ -58,6 +68,13 @@ export class UserEditComponent implements OnInit {
   
   cancel(){
     this.router.navigate(['/users']);
+  }
+
+  changePass(){
+    if(!this.changePassword){
+      this.user.password = '';
+      this.passwordConfirm = '';
+    }
   }
 
 }

@@ -13,35 +13,14 @@ export class DashboardComponent implements OnInit {
     constructor(private dashService: DashboardService) { }
     public dash: any;
 
-    // public consultantTotal: any;
-    // public consultantData = [];
-    // public consultantLabel = [];
-    // public consultantHoverLabel = [];
-    // public lineChartOptions: any = {
-    //     maintainAspectRatio: false,
-    //     legend: { display: false }
-    // };
-    // public chartColors: any[] = [{
-    //     backgroundColor: ['#3566ca', '#990697', '#09951d', '#fe980f', '#db3813', '#f0c93e', 'magenta', 'gray', 'pink', 'black']
-    // }];
-    // public barChartOptions = {
-    //     scaleShowVerticalLines: false,
-    //     responsive: true
-    // };
-    // public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    // public barChartType = 'bar';
-    // public barChartLegend = true;
-    // public barChartData = [
-    //     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    //     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-    // ];
-    // public doughnutChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
-    // public doughnutChartData = [120, 150, 180, 90];
-    // public doughnutChartType = 'doughnut';
-
     async ngOnInit() {
         this.loading = true;
         this.dash = await this.dashService.get();
+        this.dash.allCourses = this.dash.allCourses.map(course => {
+            course.evaluate = course.evaluates && course.evaluates .length > 0 ?
+            (course.evaluates.reduce((acc, { rating }) => acc + rating, 0)) / course.evaluates.length : 0;
+            return course;
+        });
         this.loading = false;
     }
 }

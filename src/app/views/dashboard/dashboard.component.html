@@ -81,24 +81,51 @@
             </div>
         </div>
         <div class="row">
-                <!-- <div style="display: block">
-                    <canvas baseChart
-                            [datasets]="barChartData"
-                            [labels]="barChartLabels"
-                            [options]="barChartOptions"
-                            [legend]="barChartLegend"
-                            [chartType]="barChartType">
-                    </canvas>
-                </div>
-
-                <div style="display: block">
-                    <canvas baseChart
-                            [data]="doughnutChartData"
-                            [labels]="doughnutChartLabels"
-                            [chartType]="doughnutChartType">
-                    </canvas>
-                </div> -->
-           
+            <div class="col-md-12 mt-5">
+                <h2>
+                    Cursos
+                </h2>
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Categoria</th>
+                            <th>Unidades</th>
+                            <th class="info"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let course of dash.allCourses; let i = index">
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.category.name }}</td>
+                            <td>{{ course.units.length }}</td>
+                            <td class="info"><i class="fa fa-info-circle" data-toggle="modal"
+                                [attr.data-target]="'#course-' + i"></i></td>
+                            <!-- Modal -->
+                            <div class="modal fade modal-evaluate" id="course-{{ i }}" tabindex="-1" role="dialog"
+                                [attr.aria-labelledby]="'course-title-' + i" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="course-title-{{ i }}">Avaliação do curso</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="note text-center">
+                                                <span>{{ course.evaluate }}</span>
+                                            </div>
+                                            <span><i class="fa fa-users"></i> Total: {{ course.evaluates.length }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

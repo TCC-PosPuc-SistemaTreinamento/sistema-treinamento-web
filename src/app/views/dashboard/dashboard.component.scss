@@ -53,3 +53,23 @@
     margin-top: 4px;
     text-transform: uppercase;
 }
+
+.modal-evaluate {
+    .modal-content {
+        width: 300px !important;
+        margin: 0 auto;
+        
+        .note {
+            font-size: 100px;
+        }
+    }
+}
+
+.info{
+    width: 200px !important;
+    max-width: 200px !important;
+
+    i {
+        cursor: pointer;
+    }
+}
